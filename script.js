@@ -343,7 +343,7 @@
     });
   }());
 
-  // ── Collection track — drag, arrows, progress ──
+  // ── Collection track — native touch scroll + desktop drag ──
   (function () {
     var track    = document.getElementById('collectionTrack');
     var prevBtn  = document.getElementById('collectionPrev');
@@ -352,8 +352,10 @@
 
     if (!track) return;
 
+    var isCoarsePointer = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     var isDown = false;
-    var startX, scrollLeft;
+    var startX = 0;
+    var scrollLeft = 0;
 
     function scrollStep(dir) {
       var card = track.querySelector('.collection__card');
@@ -368,51 +370,40 @@
       progress.style.width = max > 0 ? ((track.scrollLeft / max) * 100) + '%' : '100%';
     }
 
-    function pointerDown(clientX) {
-      isDown = true;
-      track.style.cursor = 'grabbing';
-      startX = clientX - track.offsetLeft;
-      scrollLeft = track.scrollLeft;
+    if (!isCoarsePointer) {
+      function pointerDown(clientX) {
+        isDown = true;
+        track.style.cursor = 'grabbing';
+        startX = clientX;
+        scrollLeft = track.scrollLeft;
+      }
+
+      function pointerUp() {
+        isDown = false;
+        track.style.cursor = 'grab';
+      }
+
+      function pointerMove(clientX) {
+        if (!isDown) return;
+        track.scrollLeft = scrollLeft - (clientX - startX);
+        updateProgress();
+      }
+
+      track.addEventListener('mousedown', function (e) {
+        pointerDown(e.pageX);
+      });
+
+      track.addEventListener('mouseleave', pointerUp);
+      track.addEventListener('mouseup', pointerUp);
+
+      track.addEventListener('mousemove', function (e) {
+        if (!isDown) return;
+        e.preventDefault();
+        pointerMove(e.pageX);
+      });
+    } else {
+      track.style.cursor = 'default';
     }
-
-    function pointerUp() {
-      isDown = false;
-      track.style.cursor = 'grab';
-    }
-
-    function pointerMove(clientX) {
-      if (!isDown) return;
-      var x = clientX - track.offsetLeft;
-      track.scrollLeft = scrollLeft - (x - startX) * 1.4;
-      updateProgress();
-    }
-
-    track.addEventListener('mousedown', function (e) {
-      pointerDown(e.pageX);
-    });
-
-    track.addEventListener('mouseleave', pointerUp);
-
-    track.addEventListener('mouseup', pointerUp);
-
-    track.addEventListener('mousemove', function (e) {
-      if (!isDown) return;
-      e.preventDefault();
-      pointerMove(e.pageX);
-    });
-
-    track.addEventListener('touchstart', function (e) {
-      if (!e.touches[0]) return;
-      pointerDown(e.touches[0].pageX);
-    }, { passive: true });
-
-    track.addEventListener('touchend', pointerUp);
-    track.addEventListener('touchcancel', pointerUp);
-
-    track.addEventListener('touchmove', function (e) {
-      if (!isDown || !e.touches[0]) return;
-      pointerMove(e.touches[0].pageX);
-    }, { passive: true });
 
     track.addEventListener('scroll', updateProgress, { passive: true });
     window.addEventListener('resize', updateProgress);
