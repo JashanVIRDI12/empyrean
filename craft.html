@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Craft | Empyrean Spirits</title>
+  <meta name="description" content="Discover how Empyrean Spirits is made — from grain selection and slow distillation to barrel aging across three continents.">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body class="inner-page has-subnav craft-page">
+
+  <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-label="Age verification">
+    <div class="age-gate__box">
+      <div class="age-gate__logo">Empyrean Spirits</div>
+      <div class="age-gate__sub">Private Collection</div>
+      <p class="age-gate__q">Are you of legal drinking age in your country?</p>
+      <div class="age-gate__btns">
+        <button class="age-gate__btn age-gate__btn--yes" id="ageYes" type="button">Yes, Enter</button>
+        <button class="age-gate__btn age-gate__btn--no" id="ageNo" type="button">No</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="site-header__ticker">
+      <p class="sr-only">Please drink responsibly. Must be of legal drinking age to enter.</p>
+      <div class="site-header__ticker-track" aria-hidden="true">
+        <span>Please drink responsibly</span><span>·</span>
+        <span>Empyrean Spirits — Private Collection</span><span>·</span>
+        <span>Must be of legal drinking age</span><span>·</span>
+        <span>Please drink responsibly</span><span>·</span>
+        <span>Empyrean Spirits — Private Collection</span><span>·</span>
+        <span>Must be of legal drinking age</span><span>·</span>
+      </div>
+    </div>
+    <div class="site-header__bar">
+      <a href="index.html" class="site-header__logo">
+        <span class="site-header__monogram" aria-hidden="true">E</span>
+        <span class="site-header__wordmark">
+          <span class="site-header__wordmark-main">Empyrean</span>
+          <span class="site-header__wordmark-sub">Spirits</span>
+        </span>
+      </a>
+      <nav class="site-header__nav" aria-label="Primary">
+        <ul class="site-header__links">
+          <li><a href="index.html#story"><span class="site-header__link-num">01</span><span class="site-header__link-text">Discover</span></a></li>
+          <li><a href="collection.html"><span class="site-header__link-num">02</span><span class="site-header__link-text">Collection</span></a></li>
+          <li><a href="craft.html" class="is-active" aria-current="page"><span class="site-header__link-num">03</span><span class="site-header__link-text">Craft</span></a></li>
+          <li><a href="connect.html"><span class="site-header__link-num">04</span><span class="site-header__link-text">Connect</span></a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <a href="connect.html" class="site-header__cta">
+          <span>Book a Visit</span>
+          <svg class="site-header__cta-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+        <button class="site-header__menu" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+          <span class="site-header__menu-icon" aria-hidden="true"><span></span><span></span></span>
+        </button>
+      </div>
+    </div>
+    <div class="site-header__meta">
+      <nav class="site-header__crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="site-header__crumb-sep" aria-hidden="true">/</span>
+        <span class="site-header__crumb-current" aria-current="page">The Craft</span>
+      </nav>
+      <button class="site-header__share" id="shareBtn" type="button" aria-label="Share this page">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.7" y1="10.7" x2="15.3" y2="6.3"/><line x1="8.7" y1="13.3" x2="15.3" y2="17.7"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+    <div class="nav-drawer__panel" role="dialog" aria-modal="true" aria-label="Site menu">
+      <div class="nav-drawer__head">
+        <span class="nav-drawer__eyebrow">Private Collection</span>
+        <button class="nav-drawer__close" id="navClose" type="button" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <nav class="nav-drawer__nav" aria-label="Mobile">
+        <ul class="nav-drawer__links">
+          <li><a href="index.html#story"><span class="nav-drawer__num">01</span><span class="nav-drawer__label">Discover</span></a></li>
+          <li><a href="collection.html"><span class="nav-drawer__num">02</span><span class="nav-drawer__label">Collection</span></a></li>
+          <li><a href="craft.html" class="is-active" aria-current="page"><span class="nav-drawer__num">03</span><span class="nav-drawer__label">Craft</span></a></li>
+          <li><a href="connect.html"><span class="nav-drawer__num">04</span><span class="nav-drawer__label">Connect</span></a></li>
+        </ul>
+      </nav>
+      <a href="connect.html" class="nav-drawer__cta">Book a Visit</a>
+    </div>
+  </div>
+
+  <main>
+    <section class="craft-hero">
+      <div class="craft-hero__bg" aria-hidden="true">
+        <img src="images/craft/craft-hero.png" alt="">
+      </div>
+      <div class="craft-hero__veil" aria-hidden="true"></div>
+      <div class="craft-hero__inner">
+        <div class="craft-hero__rule" aria-hidden="true"></div>
+        <p class="craft-hero__label">The Craft</p>
+        <h1 class="craft-hero__title">Barrel-Aged<br><em>Patience</em></h1>
+        <p class="craft-hero__lead">Great spirits are not made. They are waited for.</p>
+      </div>
+      <p class="craft-hero__scroll" aria-hidden="true">
+        <span>Scroll</span>
+        <span class="craft-hero__scroll-line"></span>
+      </p>
+    </section>
+
+    <section class="craft-manifesto">
+      <p class="craft-manifesto__ghost" aria-hidden="true">Patience</p>
+      <blockquote class="craft-manifesto__quote">
+        <p>We honour the grain, respect the barrel, and refuse every shortcut between them.</p>
+      </blockquote>
+      <p class="craft-manifesto__note">Barrel houses across three continents — each climate writing its own chapter into the wood. Master distillers walk the rows at dawn, listening for what time has done overnight.</p>
+    </section>
+
+    <section class="craft-acts" id="craftActs">
+      <div class="craft-acts__pin">
+        <div class="craft-acts__layout">
+          <aside class="craft-acts__aside">
+            <header class="craft-acts__masthead">
+              <p class="craft-acts__eyebrow">The Process</p>
+              <h2 class="craft-acts__title">Four Acts<br>of Restraint</h2>
+            </header>
+            <ol class="craft-acts__steps" id="craftActsSteps" aria-label="Distillation process">
+              <li class="craft-act-tab is-active" data-index="0">
+                <span class="craft-act-tab__num">01</span>
+                <span class="craft-act-tab__name">Source</span>
+              </li>
+              <li class="craft-act-tab" data-index="1">
+                <span class="craft-act-tab__num">02</span>
+                <span class="craft-act-tab__name">Distill</span>
+              </li>
+              <li class="craft-act-tab" data-index="2">
+                <span class="craft-act-tab__num">03</span>
+                <span class="craft-act-tab__name">Age</span>
+              </li>
+              <li class="craft-act-tab" data-index="3">
+                <span class="craft-act-tab__num">04</span>
+                <span class="craft-act-tab__name">Release</span>
+              </li>
+            </ol>
+            <div class="craft-acts__meter" aria-hidden="true">
+              <div class="craft-acts__meter-fill" id="craftActsMeter"></div>
+            </div>
+          </aside>
+
+          <div class="craft-acts__canvas" id="craftActsCanvas">
+            <article class="craft-act-panel is-active" data-index="0">
+              <span class="craft-act-panel__ghost" aria-hidden="true">01</span>
+              <figure class="craft-act-panel__figure">
+                <img src="images/craft/craft-source.png" alt="Hand-selected barley and winter wheat" loading="lazy">
+              </figure>
+              <div class="craft-act-panel__detail">
+                <h3 class="craft-act-panel__name">Source</h3>
+                <p class="craft-act-panel__desc">Winter wheat from the Low Countries. Highland barley. Caribbean cane. Each ingredient traced to a single origin — never blended for convenience.</p>
+              </div>
+            </article>
+            <article class="craft-act-panel" data-index="1">
+              <span class="craft-act-panel__ghost" aria-hidden="true">02</span>
+              <figure class="craft-act-panel__figure">
+                <img src="images/craft/craft-distill.png" alt="Copper still with rising steam" loading="lazy">
+              </figure>
+              <div class="craft-act-panel__detail">
+                <h3 class="craft-act-panel__name">Distill</h3>
+                <p class="craft-act-panel__desc">Slow copper runs, cut by nose not clock. Vapour rises through hand-hammered necks — every batch logged, every heart kept, every feint discarded.</p>
+              </div>
+            </article>
+            <article class="craft-act-panel" data-index="2">
+              <span class="craft-act-panel__ghost" aria-hidden="true">03</span>
+              <figure class="craft-act-panel__figure">
+                <img src="images/craft/craft-age.png" alt="Oak barrels in a stone cellar" loading="lazy">
+              </figure>
+              <div class="craft-act-panel__detail">
+                <h3 class="craft-act-panel__name">Age</h3>
+                <p class="craft-act-panel__desc">Sherry casks, ex-bourbon barrels, French oak — each vessel chosen for what it will give, not what it will hide. Years pass. Nothing is rushed.</p>
+              </div>
+            </article>
+            <article class="craft-act-panel" data-index="3">
+              <span class="craft-act-panel__ghost" aria-hidden="true">04</span>
+              <figure class="craft-act-panel__figure">
+                <img src="images/craft/craft-release.png" alt="Amber spirit poured into crystal glass" loading="lazy">
+              </figure>
+              <div class="craft-act-panel__detail">
+                <h3 class="craft-act-panel__name">Release</h3>
+                <p class="craft-act-panel__desc">When colour, nose, and finish align, the cask is opened. Numbered bottles. No chill filtration unless the spirit demands it.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="craft-measures" id="craftStats">
+      <ul class="craft-measures__list">
+        <li class="craft-measures__item">
+          <span class="craft-measures__val" data-count="3">0</span>
+          <span class="craft-measures__key">Continents</span>
+        </li>
+        <li class="craft-measures__item">
+          <span class="craft-measures__val" data-count="12000">0</span><span class="craft-measures__plus">+</span>
+          <span class="craft-measures__key">Active Casks</span>
+        </li>
+        <li class="craft-measures__item">
+          <span class="craft-measures__val" data-count="18">0</span>
+          <span class="craft-measures__key">Years Max Age</span>
+        </li>
+        <li class="craft-measures__item">
+          <span class="craft-measures__val" data-count="4">0</span>
+          <span class="craft-measures__key">Expressions</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="craft-salon">
+      <figure class="craft-salon__media">
+        <img src="images/craft/craft-atelier.png" alt="Nosing glass in the Empyrean atelier" loading="lazy">
+      </figure>
+      <div class="craft-salon__panel">
+        <p class="craft-salon__label">The Atelier</p>
+        <h2 class="craft-salon__title">Where Science<br>Meets <em>Instinct</em></h2>
+        <p class="craft-salon__body">Generations of palates meet modern instrumentation — chromatographs confirming what the nose already knows.</p>
+        <ul class="craft-salon__marks">
+          <li>Single-origin grain contracts renewed annually</li>
+          <li>Barrel rotation mapped to micro-climate</li>
+          <li>Every expression tasted blind before release</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="craft-invite">
+      <div class="craft-invite__inner">
+        <p class="craft-invite__label">Visit Us</p>
+        <h2 class="craft-invite__title">Walk the Barrel Houses</h2>
+        <p class="craft-invite__body">Private tours by appointment. Taste from the cask.</p>
+        <a href="connect.html" class="craft-invite__link">Request a Visit</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer-cta">
+    <div class="footer-cta__inner">
+      <div class="footer-cta__copy">
+        <p class="footer-cta__eyebrow">Private Collection</p>
+        <h2 class="footer-cta__title">Begin the <em>Conversation</em></h2>
+      </div>
+      <a href="connect.html" class="footer-cta__btn">Get in Touch <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__ghost" aria-hidden="true">Empyrean</div>
+    <div class="footer__inner">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__brand-name">Empyrean Spirits</div>
+          <div class="footer__brand-sub">Private Collection</div>
+          <p class="footer__brand-desc">Four spirits, one philosophy: honour the grain, respect the barrel, reward the wait.</p>
+          <p class="footer__brand-loc">Highland Estate, Scotland<br>By appointment only</p>
+        </div>
+        <div class="footer__col">
+          <h4>Collection</h4>
+          <ul>
+            <li><a href="collection.html">View All Spirits</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Discover</h4>
+          <ul>
+            <li><a href="index.html#story">Our Story</a></li>
+            <li><a href="collection.html">The Collection</a></li>
+            <li><a href="craft.html">The Craft</a></li>
+            <li><a href="#">Events</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="connect.html">Contact Us</a></li>
+            <li><a href="#">Press Kit</a></li>
+            <li><a href="mailto:hello@empyreanspirits.com">hello@empyreanspirits.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__social">
+        <a href="#" class="footer__social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="#" class="footer__social-link" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+      <div class="footer__rule" aria-hidden="true"></div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 Empyrean Spirits Private. All rights reserved.</p>
+        <p class="footer__legal">Please drink responsibly. Empyrean Spirits products are intended for adults of legal drinking age.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=4"></script>
+</body>
+</html>
