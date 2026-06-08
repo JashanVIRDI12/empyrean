@@ -554,16 +554,37 @@ html:not(.age-verified) body {
 
 /* Inner page trail */
 .site-header__meta {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   padding: 0.55rem 2.5rem;
   min-height: var(--header-meta);
+  background: transparent;
+  border-bottom: none;
+  pointer-events: auto;
+}
+
+.site-header__meta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
   background: rgba(0, 0, 0, 0.9);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  pointer-events: auto;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.site-header__meta > * {
+  position: relative;
+  z-index: 1;
 }
 
 .site-header__crumb {
