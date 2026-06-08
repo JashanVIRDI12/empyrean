@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        if (sessionStorage.getItem('empyrean_age') === '1') {
+          document.documentElement.classList.add('age-verified');
+        }
+      } catch (e) {}
+    })();
+  </script>
   <title>The Craft | Empyrean Spirits</title>
   <meta name="description" content="Discover how Empyrean Spirits is made — from grain selection and slow distillation to barrel aging across three continents.">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>

@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        if (sessionStorage.getItem('empyrean_age') === '1') {
+          document.documentElement.classList.add('age-verified');
+        }
+      } catch (e) {}
+    })();
+  </script>
   <title>Empyrean Spirits | Wine &amp; Spirits</title>
   <meta name="description" content="Empyrean Spirits: four distinct spirits crafted for moments that demand the extraordinary. Velvet Crown Whiskey, Liquid Velvet Vodka, The Gilded Grain Rum, Copper Ridge Wine.">
   <link rel="stylesheet" href="style.css?v=8">

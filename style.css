@@ -150,6 +150,14 @@ button {
   transition: opacity 0.7s var(--ease-expo), visibility 0.7s;
 }
 
+html.age-verified .age-gate {
+  display: none;
+}
+
+html:not(.age-verified) body {
+  overflow: hidden;
+}
+
 .age-gate.hidden {
   opacity: 0;
   visibility: hidden;

@@ -10,15 +10,14 @@
   var ageNo = document.getElementById('ageNo');
 
   if (sessionStorage.getItem('empyrean_age') === '1') {
+    document.documentElement.classList.add('age-verified');
     if (ageGate) ageGate.classList.add('hidden');
-  } else {
-    document.body.style.overflow = 'hidden';
   }
 
   if (ageYes) {
     ageYes.addEventListener('click', function () {
+      document.documentElement.classList.add('age-verified');
       ageGate.classList.add('hidden');
-      document.body.style.overflow = '';
       sessionStorage.setItem('empyrean_age', '1');
       if (typeof ScrollTrigger !== 'undefined') {
         setTimeout(function () { ScrollTrigger.refresh(); }, 100);
