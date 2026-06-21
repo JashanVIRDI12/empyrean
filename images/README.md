@@ -28,6 +28,7 @@ ffmpeg -i images/watermark-removed-make_this_in_also.mp4 -vf fps=60 -q:v 3 image
 | `liquidvelvetnobg.png` | Liquid Velvet |
 | `gildedgrainnobg.png` | The Gilded Grain |
 | `copperridgenobg.png` | Copper Ridge |
+| `bhaaratnobg.png` | Bhaarat Field |
 
 ## Required images
 

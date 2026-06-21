@@ -1064,6 +1064,7 @@ body.is-nav-open {
 .cp-glow--cool  { background: radial-gradient(ellipse, rgba(120, 170, 230, 0.35) 0%, transparent 70%); }
 .cp-glow--warm  { background: radial-gradient(ellipse, rgba(190, 105, 40, 0.45) 0%, transparent 70%); }
 .cp-glow--wine  { background: radial-gradient(ellipse, rgba(155, 40, 65, 0.4) 0%, transparent 70%); }
+.cp-glow--saffron { background: radial-gradient(ellipse, rgba(180, 95, 45, 0.48) 0%, transparent 70%); }
 
 /* Arrows */
 .curators-pick__arrow {
@@ -1424,6 +1425,7 @@ body.is-nav-open {
 .collection__glow--cool  { background: radial-gradient(ellipse, rgba(120, 170, 230, 0.4) 0%, transparent 70%); }
 .collection__glow--warm  { background: radial-gradient(ellipse, rgba(190, 105, 40, 0.5) 0%, transparent 70%); }
 .collection__glow--wine  { background: radial-gradient(ellipse, rgba(155, 40, 65, 0.45) 0%, transparent 70%); }
+.collection__glow--saffron { background: radial-gradient(ellipse, rgba(180, 95, 45, 0.5) 0%, transparent 70%); }
 
 .collection__body {
   margin-top: auto;
@@ -2715,6 +2717,7 @@ body.is-nav-open {
 .col-piece__glow--cool  { background: radial-gradient(ellipse, rgba(120, 170, 230, 0.42) 0%, transparent 70%); }
 .col-piece__glow--warm  { background: radial-gradient(ellipse, rgba(190, 105, 40, 0.5) 0%, transparent 70%); }
 .col-piece__glow--wine  { background: radial-gradient(ellipse, rgba(155, 40, 65, 0.48) 0%, transparent 70%); }
+.col-piece__glow--saffron { background: radial-gradient(ellipse, rgba(180, 95, 45, 0.5) 0%, transparent 70%); }
 
 .col-piece__bottle {
   position: relative;

@@ -31,6 +31,9 @@
     });
   }
 
+  // ── Connect form (EmailJS) ──
+  initConnectForm();
+
   // ── Hero scroll sequence (GSAP + ScrollTrigger) ──
   initHeroSequence();
 
@@ -1371,18 +1374,67 @@
         scrollTrigger: { trigger: reach.querySelector('.connect-form'), start: 'top 85%', once: true }
       });
     }
+  }
 
+  function initConnectForm() {
     var form = document.getElementById('connectForm');
     var note = document.getElementById('connectFormNote');
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (note) {
-          note.textContent = 'Thank you — your enquiry has been received. We will respond shortly.';
-        }
-        form.reset();
-      });
+    if (!form) return;
+
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init('ZnZGcLpxgGxsGdvsb');
     }
+
+    var subjectLabels = {
+      visit: 'Distillery Visit',
+      trade: 'Trade Enquiry',
+      press: 'Press & Media',
+      general: 'General'
+    };
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var submitBtn = form.querySelector('.connect-form__submit');
+      var nameEl = document.getElementById('connectName');
+      var emailEl = document.getElementById('connectEmail');
+      var subjectEl = document.getElementById('connectSubject');
+      var messageEl = document.getElementById('connectMessage');
+
+      if (!nameEl.value.trim() || !emailEl.value.trim() || !subjectEl.value || !messageEl.value.trim()) {
+        if (note) note.textContent = 'Please fill in all fields before sending.';
+        return;
+      }
+
+      if (typeof emailjs === 'undefined') {
+        if (note) note.textContent = 'Unable to send — please email us at info@mngoverseas.com.';
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+      }
+      if (note) note.textContent = '';
+
+      emailjs.send('service_6hlbtnk', 'template_kj49ldf', {
+        from_name: nameEl.value.trim(),
+        from_email: emailEl.value.trim(),
+        reply_to: emailEl.value.trim(),
+        subject: subjectLabels[subjectEl.value] || subjectEl.value,
+        message: messageEl.value.trim()
+      }).then(function () {
+        if (note) note.textContent = 'Thank you — your enquiry has been received. We will respond shortly.';
+        form.reset();
+      }).catch(function () {
+        if (note) note.textContent = 'Something went wrong. Please try again or email info@mngoverseas.com directly.';
+      }).finally(function () {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Enquiry';
+        }
+      });
+    });
   }
 
   function initPageAnimations() {
