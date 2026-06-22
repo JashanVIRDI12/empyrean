@@ -14,11 +14,18 @@
   </script>
   <title>The Collection | Empyrean Spirits</title>
   <meta name="description" content="Explore the full Empyrean Spirits collection: Velvet Crown Whiskey, Liquid Velvet Vodka, The Gilded Grain Rum, Copper Ridge Wine, and Bhaarat Field Premium Indian Whisky.">
+  <meta name="theme-color" content="#080808">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="The Collection | Empyrean Spirits">
+  <meta property="og:description" content="Five spirits, one legacy. Explore every expression in the Empyrean private collection.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/velevetcrownnobg.png">
+  <meta name="twitter:card" content="summary_large_image">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
-  <link rel="stylesheet" href="style.css?v=7">
+  <link rel="stylesheet" href="style.css?v=20">
 </head>
-<body class="inner-page has-subnav">
+<body class="inner-page has-subnav collection-page">
 
   <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-label="Age verification">
     <div class="age-gate__box">
@@ -54,7 +61,7 @@
       </a>
       <nav class="site-header__nav" aria-label="Primary">
         <ul class="site-header__links">
-          <li><a href="index.html#story"><span class="site-header__link-num">01</span><span class="site-header__link-text">Discover</span></a></li>
+          <li><a href="index.html"><span class="site-header__link-num">01</span><span class="site-header__link-text">Discover</span></a></li>
           <li><a href="collection.html" class="is-active" aria-current="page"><span class="site-header__link-num">02</span><span class="site-header__link-text">Collection</span></a></li>
           <li><a href="craft.html"><span class="site-header__link-num">03</span><span class="site-header__link-text">Craft</span></a></li>
           <li><a href="connect.html"><span class="site-header__link-num">04</span><span class="site-header__link-text">Connect</span></a></li>
@@ -92,7 +99,7 @@
       </div>
       <nav class="nav-drawer__nav" aria-label="Mobile">
         <ul class="nav-drawer__links">
-          <li><a href="index.html#story"><span class="nav-drawer__num">01</span><span class="nav-drawer__label">Discover</span></a></li>
+          <li><a href="index.html"><span class="nav-drawer__num">01</span><span class="nav-drawer__label">Discover</span></a></li>
           <li><a href="collection.html" class="is-active" aria-current="page"><span class="nav-drawer__num">02</span><span class="nav-drawer__label">Collection</span></a></li>
           <li><a href="craft.html"><span class="nav-drawer__num">03</span><span class="nav-drawer__label">Craft</span></a></li>
           <li><a href="connect.html"><span class="nav-drawer__num">04</span><span class="nav-drawer__label">Connect</span></a></li>
@@ -103,82 +110,195 @@
   </div>
 
   <main>
-    <section class="page-hero page-hero--collection">
-      <p class="page-hero__label">The Collection</p>
-      <h1 class="page-hero__title">Five Spirits,<br>One Legacy</h1>
+
+    <!-- ══ COLLECTION HERO ══ -->
+    <section class="coll-hero" id="collHero">
+      <div class="coll-hero__bg-text" aria-hidden="true">Collection</div>
+      <div class="coll-hero__inner">
+        <p class="coll-hero__eyebrow">— 02 / The Collection</p>
+        <h1 class="coll-hero__title">Five Spirits,<br>One Legacy</h1>
+        <p class="coll-hero__sub">Each expression born from a single obsession: that great spirits are not made — they are waited for.</p>
+      </div>
+      <div class="coll-hero__scroll-cue" aria-hidden="true">
+        <span class="coll-hero__scroll-label">Scroll to explore</span>
+        <span class="coll-hero__scroll-line"></span>
+      </div>
     </section>
 
-    <section class="col-showcase">
-      <article class="col-piece" aria-label="Velvet Crown, Single Malt Whiskey">
-        <span class="col-piece__index">01</span>
-        <div class="col-piece__stage">
-          <p class="col-piece__watermark" aria-hidden="true">Velvet Crown</p>
-          <div class="col-piece__glow col-piece__glow--amber" aria-hidden="true"></div>
-          <img class="col-piece__bottle" src="images/velevetcrownnobg.png" alt="Velvet Crown 18-Year Single Malt Whiskey" loading="lazy">
-        </div>
-        <div class="col-piece__meta">
-          <p class="col-piece__type">Single Malt Whiskey</p>
-          <p class="col-piece__desc">Aged 18 years in charred sherry casks. Smoked honey, dried fig, toasted vanilla.</p>
-          <span class="col-piece__link">Explore Expression</span>
-        </div>
-      </article>
+    <!-- ══ SPIRIT COLLECTION — VERTICAL ══ -->
+    <section class="coll-spirits" id="collSpirits">
 
-      <article class="col-piece col-piece--flip" aria-label="Liquid Velvet, Premium Vodka">
-        <span class="col-piece__index">02</span>
-        <div class="col-piece__stage">
-          <p class="col-piece__watermark" aria-hidden="true">Liquid Velvet</p>
-          <div class="col-piece__glow col-piece__glow--cool" aria-hidden="true"></div>
-          <img class="col-piece__bottle" src="images/liquidvelvetnobg.png" alt="Liquid Velvet Premium Vodka" loading="lazy">
-        </div>
-        <div class="col-piece__meta">
-          <p class="col-piece__type">Premium Vodka</p>
-          <p class="col-piece__desc">Five-times distilled from winter wheat. Crystal clarity, silk finish, white pepper.</p>
-          <span class="col-piece__link">Explore Expression</span>
-        </div>
-      </article>
+      <!-- Sticky side dot navigation (desktop) -->
+      <nav class="coll-sidenav" aria-label="Collection navigation" id="collSidenav">
+        <ol class="coll-sidenav__list">
+          <li class="coll-sidenav__item is-active">
+            <button class="coll-sidenav__dot" data-target="spirit-01" type="button" aria-label="Go to Velvet Crown">
+              <span class="coll-sidenav__name">Velvet Crown</span>
+              <span class="coll-sidenav__mark"></span>
+            </button>
+          </li>
+          <li class="coll-sidenav__item">
+            <button class="coll-sidenav__dot" data-target="spirit-02" type="button" aria-label="Go to Liquid Velvet">
+              <span class="coll-sidenav__name">Liquid Velvet</span>
+              <span class="coll-sidenav__mark"></span>
+            </button>
+          </li>
+          <li class="coll-sidenav__item">
+            <button class="coll-sidenav__dot" data-target="spirit-03" type="button" aria-label="Go to Gilded Grain">
+              <span class="coll-sidenav__name">Gilded Grain</span>
+              <span class="coll-sidenav__mark"></span>
+            </button>
+          </li>
+          <li class="coll-sidenav__item">
+            <button class="coll-sidenav__dot" data-target="spirit-04" type="button" aria-label="Go to Copper Ridge">
+              <span class="coll-sidenav__name">Copper Ridge</span>
+              <span class="coll-sidenav__mark"></span>
+            </button>
+          </li>
+          <li class="coll-sidenav__item">
+            <button class="coll-sidenav__dot" data-target="spirit-05" type="button" aria-label="Go to Bhaarat Field">
+              <span class="coll-sidenav__name">Bhaarat Field</span>
+              <span class="coll-sidenav__mark"></span>
+            </button>
+          </li>
+        </ol>
+      </nav>
 
-      <article class="col-piece" aria-label="The Gilded Grain, Fine Aged Rum">
-        <span class="col-piece__index">03</span>
-        <div class="col-piece__stage">
-          <p class="col-piece__watermark col-piece__watermark--long" aria-hidden="true">Gilded Grain</p>
-          <div class="col-piece__glow col-piece__glow--warm" aria-hidden="true"></div>
-          <img class="col-piece__bottle" src="images/gildedgrainnobg.png" alt="The Gilded Grain Fine Aged Rum" loading="lazy">
-        </div>
-        <div class="col-piece__meta">
-          <p class="col-piece__type">Fine Aged Rum</p>
-          <p class="col-piece__desc">Single-batch Caribbean rum. Dark molasses, star anise, orange zest.</p>
-          <span class="col-piece__link">Explore Expression</span>
-        </div>
-      </article>
+      <div class="coll-spirits__list">
 
-      <article class="col-piece col-piece--flip" aria-label="Copper Ridge, Bordeaux Red Wine">
-        <span class="col-piece__index">04</span>
-        <div class="col-piece__stage">
-          <p class="col-piece__watermark" aria-hidden="true">Copper Ridge</p>
-          <div class="col-piece__glow col-piece__glow--wine" aria-hidden="true"></div>
-          <img class="col-piece__bottle" src="images/copperridgenobg.png" alt="Copper Ridge Bordeaux Red Wine" loading="lazy">
-        </div>
-        <div class="col-piece__meta">
-          <p class="col-piece__type">Bordeaux Red Wine</p>
-          <p class="col-piece__desc">Deep ruby Bordeaux. Black cherry, cedar, and a thread of dark chocolate.</p>
-          <span class="col-piece__link">Explore Expression</span>
-        </div>
-      </article>
+        <!-- 01 — Velvet Crown -->
+        <article class="coll-panel" id="spirit-01" aria-label="Velvet Crown Whiskey">
+          <div class="coll-panel__ambient">
+            <div class="coll-panel__glow cp-glow--amber"></div>
+          </div>
+          <div class="coll-panel__ghost" aria-hidden="true">01</div>
+          <div class="coll-panel__layout">
+            <div class="coll-panel__info">
+              <div class="coll-panel__meta">
+                <span class="coll-panel__num">01</span>
+                <span class="coll-panel__divider-h"></span>
+                <span class="coll-panel__category">Single Malt Whiskey</span>
+              </div>
+              <h2 class="coll-panel__name">
+                <span class="coll-panel__name-line">Velvet</span>
+                <span class="coll-panel__name-line coll-panel__name-line--em">Crown</span>
+              </h2>
+              <a href="velvet-crown.html" class="coll-panel__cta">Explore Expression <span class="coll-panel__cta-arrow">→</span></a>
+            </div>
+            <div class="coll-panel__visual">
+              <div class="coll-panel__bottle-glow cp-glow--amber"></div>
+              <img class="coll-panel__bottle" src="images/velevetcrownnobg.png" alt="Velvet Crown 18-Year Single Malt Whiskey" loading="eager">
+            </div>
+          </div>
+        </article>
 
-      <article class="col-piece" aria-label="Bhaarat Field, Premium Indian Whisky">
-        <span class="col-piece__index">05</span>
-        <div class="col-piece__stage">
-          <p class="col-piece__watermark col-piece__watermark--long" aria-hidden="true">Bhaarat Field</p>
-          <div class="col-piece__glow col-piece__glow--saffron" aria-hidden="true"></div>
-          <img class="col-piece__bottle" src="images/bhaaratnobg.png" alt="Bhaarat Field Premium Indian Whisky" loading="lazy">
-        </div>
-        <div class="col-piece__meta">
-          <p class="col-piece__type">Premium Indian Whisky</p>
-          <p class="col-piece__desc">Sun-ripened barley from open heartland fields. Warm spice, golden malt, and a finish that lingers like late harvest light.</p>
-          <span class="col-piece__link">Explore Expression</span>
-        </div>
-      </article>
+        <!-- 02 — Liquid Velvet -->
+        <article class="coll-panel coll-panel--alt" id="spirit-02" aria-label="Liquid Velvet Vodka">
+          <div class="coll-panel__ambient">
+            <div class="coll-panel__glow cp-glow--cool"></div>
+          </div>
+          <div class="coll-panel__ghost" aria-hidden="true">02</div>
+          <div class="coll-panel__layout">
+            <div class="coll-panel__info">
+              <div class="coll-panel__meta">
+                <span class="coll-panel__num">02</span>
+                <span class="coll-panel__divider-h"></span>
+                <span class="coll-panel__category">Premium Vodka</span>
+              </div>
+              <h2 class="coll-panel__name">
+                <span class="coll-panel__name-line">Liquid</span>
+                <span class="coll-panel__name-line coll-panel__name-line--em">Velvet</span>
+              </h2>
+              <a href="liquid-velvet.html" class="coll-panel__cta">Explore Expression <span class="coll-panel__cta-arrow">→</span></a>
+            </div>
+            <div class="coll-panel__visual">
+              <div class="coll-panel__bottle-glow cp-glow--cool"></div>
+              <img class="coll-panel__bottle" src="images/liquidvelvetnobg.png" alt="Liquid Velvet Premium Vodka" loading="lazy">
+            </div>
+          </div>
+        </article>
+
+        <!-- 03 — The Gilded Grain -->
+        <article class="coll-panel" id="spirit-03" aria-label="The Gilded Grain Rum">
+          <div class="coll-panel__ambient">
+            <div class="coll-panel__glow cp-glow--warm"></div>
+          </div>
+          <div class="coll-panel__ghost" aria-hidden="true">03</div>
+          <div class="coll-panel__layout">
+            <div class="coll-panel__info">
+              <div class="coll-panel__meta">
+                <span class="coll-panel__num">03</span>
+                <span class="coll-panel__divider-h"></span>
+                <span class="coll-panel__category">Fine Aged Rum</span>
+              </div>
+              <h2 class="coll-panel__name">
+                <span class="coll-panel__name-line">The Gilded</span>
+                <span class="coll-panel__name-line coll-panel__name-line--em">Grain</span>
+              </h2>
+              <a href="gilded-grain.html" class="coll-panel__cta">Explore Expression <span class="coll-panel__cta-arrow">→</span></a>
+            </div>
+            <div class="coll-panel__visual">
+              <div class="coll-panel__bottle-glow cp-glow--warm"></div>
+              <img class="coll-panel__bottle" src="images/gildedgrainnobg.png" alt="The Gilded Grain Fine Aged Rum" loading="lazy">
+            </div>
+          </div>
+        </article>
+
+        <!-- 04 — Copper Ridge -->
+        <article class="coll-panel coll-panel--alt" id="spirit-04" aria-label="Copper Ridge Wine">
+          <div class="coll-panel__ambient">
+            <div class="coll-panel__glow cp-glow--wine"></div>
+          </div>
+          <div class="coll-panel__ghost" aria-hidden="true">04</div>
+          <div class="coll-panel__layout">
+            <div class="coll-panel__info">
+              <div class="coll-panel__meta">
+                <span class="coll-panel__num">04</span>
+                <span class="coll-panel__divider-h"></span>
+                <span class="coll-panel__category">Bordeaux Red Wine</span>
+              </div>
+              <h2 class="coll-panel__name">
+                <span class="coll-panel__name-line">Copper</span>
+                <span class="coll-panel__name-line coll-panel__name-line--em">Ridge</span>
+              </h2>
+              <a href="copper-ridge.html" class="coll-panel__cta">Explore Expression <span class="coll-panel__cta-arrow">→</span></a>
+            </div>
+            <div class="coll-panel__visual">
+              <div class="coll-panel__bottle-glow cp-glow--wine"></div>
+              <img class="coll-panel__bottle" src="images/copperridgenobg.png" alt="Copper Ridge Bordeaux Red Wine" loading="lazy">
+            </div>
+          </div>
+        </article>
+
+        <!-- 05 — Bhaarat Field -->
+        <article class="coll-panel" id="spirit-05" aria-label="Bhaarat Field Indian Whisky">
+          <div class="coll-panel__ambient">
+            <div class="coll-panel__glow cp-glow--saffron"></div>
+          </div>
+          <div class="coll-panel__ghost" aria-hidden="true">05</div>
+          <div class="coll-panel__layout">
+            <div class="coll-panel__info">
+              <div class="coll-panel__meta">
+                <span class="coll-panel__num">05</span>
+                <span class="coll-panel__divider-h"></span>
+                <span class="coll-panel__category">Premium Indian Whisky</span>
+              </div>
+              <h2 class="coll-panel__name">
+                <span class="coll-panel__name-line">Bhaarat</span>
+                <span class="coll-panel__name-line coll-panel__name-line--em">Field</span>
+              </h2>
+              <a href="bhaarat-field.html" class="coll-panel__cta">Explore Expression <span class="coll-panel__cta-arrow">→</span></a>
+            </div>
+            <div class="coll-panel__visual">
+              <div class="coll-panel__bottle-glow cp-glow--saffron"></div>
+              <img class="coll-panel__bottle" src="images/bhaaratnobg.png" alt="Bhaarat Field Premium Indian Whisky" loading="lazy">
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /list -->
     </section>
+
   </main>
 
   <div class="footer-cta">
@@ -205,6 +325,11 @@
           <h4>Collection</h4>
           <ul>
             <li><a href="collection.html">View All Spirits</a></li>
+            <li><a href="velvet-crown.html">Velvet Crown</a></li>
+            <li><a href="liquid-velvet.html">Liquid Velvet</a></li>
+            <li><a href="gilded-grain.html">The Gilded Grain</a></li>
+            <li><a href="copper-ridge.html">Copper Ridge</a></li>
+            <li><a href="bhaarat-field.html">Bhaarat Field</a></li>
           </ul>
         </div>
         <div class="footer__col">
@@ -213,25 +338,17 @@
             <li><a href="index.html#story">Our Story</a></li>
             <li><a href="collection.html">The Collection</a></li>
             <li><a href="craft.html">The Craft</a></li>
-            <li><a href="#">Events</a></li>
+            <li><a href="connect.html">Events &amp; Visits</a></li>
           </ul>
         </div>
         <div class="footer__col">
           <h4>Connect</h4>
           <ul>
             <li><a href="connect.html">Contact Us</a></li>
-            <li><a href="#">Press Kit</a></li>
+            <li><a href="mailto:info@mngoverseas.com?subject=Press%20Kit%20Request">Press Kit</a></li>
             <li><a href="mailto:info@mngoverseas.com">info@mngoverseas.com</a></li>
           </ul>
         </div>
-      </div>
-      <div class="footer__social">
-        <a href="#" class="footer__social-link" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-        <a href="#" class="footer__social-link" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
       </div>
       <div class="footer__rule" aria-hidden="true"></div>
       <div class="footer__bottom">
@@ -241,6 +358,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=20"></script>
 </body>
 </html>

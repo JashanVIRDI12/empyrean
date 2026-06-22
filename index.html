@@ -14,11 +14,20 @@
   </script>
   <title>Empyrean Spirits | Wine &amp; Spirits</title>
   <meta name="description" content="Empyrean Spirits: five distinct spirits crafted for moments that demand the extraordinary. Velvet Crown Whiskey, Liquid Velvet Vodka, The Gilded Grain Rum, Copper Ridge Wine, and Bhaarat Field Premium Indian Whisky.">
-  <link rel="stylesheet" href="style.css?v=8">
+  <meta name="theme-color" content="#080808">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Empyrean Spirits | Private Collection">
+  <meta property="og:description" content="Five distinct spirits. One uncompromising standard. Explore Velvet Crown, Liquid Velvet, The Gilded Grain, Copper Ridge, and Bhaarat Field.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/velevetcrownnobg.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="style.css?v=20">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
 </head>
 <body>
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <!-- ══ AGE GATE ══ -->
   <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-label="Age verification">
@@ -56,7 +65,7 @@
       </a>
       <nav class="site-header__nav" aria-label="Primary">
         <ul class="site-header__links">
-          <li><a href="#story"><span class="site-header__link-num">01</span><span class="site-header__link-text">Discover</span></a></li>
+          <li><a href="index.html" class="is-active" aria-current="page"><span class="site-header__link-num">01</span><span class="site-header__link-text">Discover</span></a></li>
           <li><a href="collection.html"><span class="site-header__link-num">02</span><span class="site-header__link-text">Collection</span></a></li>
           <li><a href="craft.html"><span class="site-header__link-num">03</span><span class="site-header__link-text">Craft</span></a></li>
           <li><a href="connect.html"><span class="site-header__link-num">04</span><span class="site-header__link-text">Connect</span></a></li>
@@ -84,7 +93,7 @@
       </div>
       <nav class="nav-drawer__nav" aria-label="Mobile">
         <ul class="nav-drawer__links">
-          <li><a href="#story"><span class="nav-drawer__num">01</span><span class="nav-drawer__label">Discover</span></a></li>
+          <li><a href="index.html" class="is-active" aria-current="page"><span class="nav-drawer__num">01</span><span class="nav-drawer__label">Discover</span></a></li>
           <li><a href="collection.html"><span class="nav-drawer__num">02</span><span class="nav-drawer__label">Collection</span></a></li>
           <li><a href="craft.html"><span class="nav-drawer__num">03</span><span class="nav-drawer__label">Craft</span></a></li>
           <li><a href="connect.html"><span class="nav-drawer__num">04</span><span class="nav-drawer__label">Connect</span></a></li>
@@ -96,39 +105,45 @@
 
   <main>
 
-    <!-- ══ HERO — scroll-driven sequence ══ -->
+    <!-- ══ HERO — video background ══ -->
     <section class="hero" id="hero">
-      <div class="hero__sticky">
-        <div class="hero__glow" aria-hidden="true"></div>
-        <div class="hero__vignette" aria-hidden="true"></div>
+      <div class="hero__media" aria-hidden="true">
+        <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto">
+          <source src="images/Detailed_hero_video_prompt_—_l_gwr_video_mvp.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero__veil" aria-hidden="true"></div>
 
-        <div class="hero__media">
-          <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="hero__content">
+        <p class="hero__eyebrow">Private Collection</p>
+        <h1 class="hero__title">Empyrean<br>Spirits</h1>
+        <p class="hero__sub">Online Wine &amp; Spirits — where rarity meets ritual.</p>
+        <div class="hero__actions">
+          <a href="collection.html" class="hero__btn hero__btn--primary">Explore the Collection</a>
+          <a href="connect.html" class="hero__btn hero__btn--ghost">Book a Visit</a>
         </div>
-
-        <div class="hero__text-stage" aria-live="polite">
-          <div class="hero__text hero__text--center" id="heroText1">
-            <span class="hero__text-line">Empyrean</span>
-            <span class="hero__text-line">Spirits</span>
-          </div>
-          <div class="hero__text hero__text--left" id="heroText2">
-            <span class="hero__text-line">Where Rarity</span>
-          </div>
-          <div class="hero__text hero__text--right" id="heroText3">
-            <span class="hero__text-line">Meets Ritual</span>
-          </div>
-          <div class="hero__text hero__text--center hero__text--final" id="heroText4">
-            <span class="hero__text-line">Online</span>
-            <span class="hero__text-line">Wine &amp; Spirits</span>
-          </div>
-        </div>
-
-        <p class="hero__scroll-hint" aria-hidden="true">
-          <span>Scroll</span>
-          <span class="hero__scroll-line"></span>
-        </p>
       </div>
     </section>
+
+    <!-- ══ MARQUEE ══ -->
+    <div class="hp-marquee" aria-hidden="true">
+      <div class="hp-marquee__track">
+        <div class="hp-marquee__group">
+          <span class="hp-marquee__cat">Single Malt</span><em class="hp-marquee__name">Velvet Crown</em><span class="hp-marquee__gem">✦</span>
+          <span class="hp-marquee__cat">Premium Vodka</span><em class="hp-marquee__name">Liquid Velvet</em><span class="hp-marquee__gem">✦</span>
+          <span class="hp-marquee__cat">Aged Rum</span><em class="hp-marquee__name">The Gilded Grain</em><span class="hp-marquee__gem">✦</span>
+          <span class="hp-marquee__cat">Bordeaux</span><em class="hp-marquee__name">Copper Ridge</em><span class="hp-marquee__gem">✦</span>
+          <span class="hp-marquee__cat">Indian Whisky</span><em class="hp-marquee__name">Bhaarat Field</em><span class="hp-marquee__gem">✦</span>
+        </div>
+        <div class="hp-marquee__group" aria-hidden="true">
+          <span class="hp-marquee__cat">Single Malt</span><em class="hp-marquee__name">Velvet Crown</em><span class="hp-marquee__gem">✦</span>
+          <span class="hp-marquee__cat">Premium Vodka</span><em class="hp-marquee__name">Liquid Velvet</em><span class="hp-marquee__gem">✦</span>
+          <span class="hp-marquee__cat">Aged Rum</span><em class="hp-marquee__name">The Gilded Grain</em><span class="hp-marquee__gem">✦</span>
+          <span class="hp-marquee__cat">Bordeaux</span><em class="hp-marquee__name">Copper Ridge</em><span class="hp-marquee__gem">✦</span>
+          <span class="hp-marquee__cat">Indian Whisky</span><em class="hp-marquee__name">Bhaarat Field</em><span class="hp-marquee__gem">✦</span>
+        </div>
+      </div>
+    </div>
 
     <!-- ══ CURATOR'S PICK ══ -->
     <section class="curators-pick" id="curatorsPick">
@@ -183,31 +198,31 @@
               <p class="cp-info__type">Single Malt Whiskey</p>
               <h3 class="cp-info__name">Velvet Crown</h3>
               <p class="cp-info__desc">Aged 18 years in charred sherry casks. Smoked honey, dried fig, toasted vanilla. The signature expression of Empyrean Spirits.</p>
-              <a href="collection.html" class="cp-info__link">Explore the Reserve</a>
+              <a href="velvet-crown.html" class="cp-info__link">Explore the Reserve</a>
             </div>
             <div class="cp-info" data-index="1">
               <p class="cp-info__type">Premium Vodka</p>
               <h3 class="cp-info__name">Liquid Velvet</h3>
               <p class="cp-info__desc">Five-times distilled from winter wheat. Crystal clarity, silk finish, white pepper. Precision in every pour.</p>
-              <a href="collection.html" class="cp-info__link">Discover</a>
+              <a href="liquid-velvet.html" class="cp-info__link">Discover</a>
             </div>
             <div class="cp-info" data-index="2">
               <p class="cp-info__type">Fine Aged Rum</p>
               <h3 class="cp-info__name">The Gilded Grain</h3>
               <p class="cp-info__desc">Single-batch Caribbean rum. Dark molasses, star anise, orange zest. Aged where the trade winds meet the barrel house.</p>
-              <a href="collection.html" class="cp-info__link">Discover</a>
+              <a href="gilded-grain.html" class="cp-info__link">Discover</a>
             </div>
             <div class="cp-info" data-index="3">
               <p class="cp-info__type">Bordeaux Red Wine</p>
               <h3 class="cp-info__name">Copper Ridge</h3>
               <p class="cp-info__desc">Deep ruby Bordeaux. Black cherry, cedar, and a thread of dark chocolate. Crafted for the long table.</p>
-              <a href="collection.html" class="cp-info__link">Discover</a>
+              <a href="copper-ridge.html" class="cp-info__link">Discover</a>
             </div>
             <div class="cp-info" data-index="4">
               <p class="cp-info__type">Premium Indian Whisky</p>
               <h3 class="cp-info__name">Bhaarat Field</h3>
               <p class="cp-info__desc">Distilled from sun-ripened barley drawn across open heartland fields. Warm spice, golden malt, and a finish that lingers like late harvest light.</p>
-              <a href="collection.html" class="cp-info__link">Discover</a>
+              <a href="bhaarat-field.html" class="cp-info__link">Discover</a>
             </div>
           </div>
         </div>
@@ -226,7 +241,7 @@
     <section class="categories" id="categories">
       <nav class="categories__list" aria-label="Spirit categories">
         <a href="collection.html" class="categories__item">Whisky</a>
-        <a href="collection.html" class="categories__item">Brandy &amp; Cognac</a>
+        <a href="collection.html" class="categories__item">Vodka &amp; Rum</a>
         <a href="collection.html" class="categories__item categories__item--accent">Spirits</a>
         <a href="collection.html" class="categories__item">Wine &amp; Champagne</a>
       </nav>
@@ -265,7 +280,7 @@
                 <p class="collection__type">Single Malt Whiskey</p>
                 <h3 class="collection__name">Velvet Crown</h3>
                 <p class="collection__desc">Aged 18 years in charred sherry casks. Smoked honey, dried fig, toasted vanilla.</p>
-                <a href="collection.html" class="collection__link">Discover <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                <a href="velvet-crown.html" class="collection__link">Discover <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               </div>
             </article>
             <article class="collection__card" data-reveal="delay-1">
@@ -278,7 +293,7 @@
                 <p class="collection__type">Premium Vodka</p>
                 <h3 class="collection__name">Liquid Velvet</h3>
                 <p class="collection__desc">Five-times distilled from winter wheat. Crystal clarity, silk finish, white pepper.</p>
-                <a href="collection.html" class="collection__link">Discover <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                <a href="liquid-velvet.html" class="collection__link">Discover <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               </div>
             </article>
             <article class="collection__card" data-reveal="delay-2">
@@ -291,7 +306,7 @@
                 <p class="collection__type">Fine Aged Rum</p>
                 <h3 class="collection__name">The Gilded Grain</h3>
                 <p class="collection__desc">Single-batch Caribbean rum. Dark molasses, star anise, orange zest.</p>
-                <a href="collection.html" class="collection__link">Discover <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                <a href="gilded-grain.html" class="collection__link">Discover <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               </div>
             </article>
             <article class="collection__card" data-reveal="delay-3">
@@ -304,7 +319,7 @@
                 <p class="collection__type">Bordeaux Red Wine</p>
                 <h3 class="collection__name">Copper Ridge</h3>
                 <p class="collection__desc">Deep ruby Bordeaux. Black cherry, cedar, and a thread of dark chocolate.</p>
-                <a href="collection.html" class="collection__link">Discover <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                <a href="copper-ridge.html" class="collection__link">Discover <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               </div>
             </article>
             <article class="collection__card" data-reveal="delay-4">
@@ -317,7 +332,7 @@
                 <p class="collection__type">Premium Indian Whisky</p>
                 <h3 class="collection__name">Bhaarat Field</h3>
                 <p class="collection__desc">Sun-ripened barley from open heartland fields. Warm spice, golden malt, and a long, luminous finish.</p>
-                <a href="collection.html" class="collection__link">Discover <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                <a href="bhaarat-field.html" class="collection__link">Discover <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               </div>
             </article>
           </div>
@@ -345,7 +360,7 @@
             <p class="philosophy__body" data-reveal="delay-2">Empyrean Spirits began with a single cask and a refusal to compromise. Today, our five expressions span continents, from Highland barley to Indian spice, but the principle remains unchanged: source obsessively, distill slowly, age honestly.</p>
             <div class="philosophy__stats" id="philosophyStats" data-reveal="delay-3">
               <div class="philosophy__stat">
-                <span class="philosophy__stat-num" data-count="4">0</span>
+                <span class="philosophy__stat-num" data-count="5">0</span>
                 <span class="philosophy__stat-label">Expressions</span>
               </div>
               <div class="philosophy__stat">
@@ -409,33 +424,30 @@
           <h4>Collection</h4>
           <ul>
             <li><a href="collection.html">View All Spirits</a></li>
+            <li><a href="velvet-crown.html">Velvet Crown</a></li>
+            <li><a href="liquid-velvet.html">Liquid Velvet</a></li>
+            <li><a href="gilded-grain.html">The Gilded Grain</a></li>
+            <li><a href="copper-ridge.html">Copper Ridge</a></li>
+            <li><a href="bhaarat-field.html">Bhaarat Field</a></li>
           </ul>
         </div>
         <div class="footer__col">
           <h4>Discover</h4>
           <ul>
-            <li><a href="#story">Our Story</a></li>
-            <li><a href="#story">Tasting Notes</a></li>
+            <li><a href="index.html#story">Our Story</a></li>
+            <li><a href="collection.html">The Collection</a></li>
             <li><a href="craft.html">The Craft</a></li>
-            <li><a href="#">Events</a></li>
+            <li><a href="connect.html">Events &amp; Visits</a></li>
           </ul>
         </div>
         <div class="footer__col">
           <h4>Connect</h4>
           <ul>
             <li><a href="connect.html">Contact Us</a></li>
-            <li><a href="#">Press Kit</a></li>
+            <li><a href="mailto:info@mngoverseas.com?subject=Press%20Kit%20Request">Press Kit</a></li>
             <li><a href="mailto:info@mngoverseas.com">info@mngoverseas.com</a></li>
           </ul>
         </div>
-      </div>
-      <div class="footer__social">
-        <a href="#" class="footer__social-link" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-        <a href="#" class="footer__social-link" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
       </div>
       <div class="footer__rule" aria-hidden="true"></div>
       <div class="footer__bottom">
@@ -445,6 +457,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=8"></script>
+  <script src="script.js?v=20"></script>
 </body>
 </html>

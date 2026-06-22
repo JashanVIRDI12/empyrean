@@ -1,26 +1,14 @@
 # Empyrean Spirits — Image Assets
 
-Drop your product and lifestyle images here. Each file name maps directly to a reference in `index.html`.
+Assets referenced by the live site.
 
-## Hero scroll sequence
+## Hero video
 
-### Desktop (`sequences/intro/`)
+| File | Used in |
+|------|---------|
+| `Detailed_hero_video_prompt_—_l_gwr_video_mvp.mp4` | Homepage hero background |
 
-- `frame_00001.jpg` through `frame_00596.jpg` (596 frames)
-- Scrubbed via GSAP ScrollTrigger as you scroll the pinned hero section
-
-### Mobile (`sequences/mobile/`)
-
-- Source: `watermark-removed-make_this_in_also.mp4` (720×1280, 10s)
-- Extracted at **60fps** → `frame_00001.jpg` through `frame_00600.jpg` (600 frames)
-- Used automatically on viewports ≤900px wide
-- Regenerate frames:
-
-```bash
-ffmpeg -i images/watermark-removed-make_this_in_also.mp4 -vf fps=60 -q:v 3 images/sequences/mobile/frame_%05d.jpg
-```
-
-## Transparent bottle assets (Curator's Pick)
+## Bottle assets (transparent PNG)
 
 | File | Product |
 |------|---------|
@@ -30,24 +18,22 @@ ffmpeg -i images/watermark-removed-make_this_in_also.mp4 -vf fps=60 -q:v 3 image
 | `copperridgenobg.png` | Copper Ridge |
 | `bhaaratnobg.png` | Bhaarat Field |
 
-## Required images
+## Lifestyle & section imagery
 
-| File | Used in | Recommended size |
-|------|---------|------------------|
-| `hero-decanter.png` | Hero banner (center decanter) | 800×1000px, transparent PNG |
-| `velvet-crown.png` | Curator's Pick, Collection, Reserve, Gallery | 600×900px, transparent PNG |
-| `liquid-velvet.png` | Curator's Pick, Collection | 600×900px, transparent PNG |
-| `gilded-grain.png` | Curator's Pick, Collection, Gallery | 600×900px, transparent PNG |
-| `copper-ridge.png` | Curator's Pick, Collection, Gallery | 600×900px, transparent PNG |
-| `distillery.png` | Distillery section background | 1920×1080px |
-| `pouring.png` | Cocktails CTA section | 800×1000px |
-| `ingredients.png` | Philosophy section | 800×1000px |
-| `hero-cocktail.png` | Philosophy float image | 600×600px |
-| `copper-cocktail.png` | Gallery tile | 600×600px |
-| `cocktail-lifestyle.png` | Gallery tile | 600×600px |
+| File | Used in |
+|------|---------|
+| `pouring.png` | Homepage philosophy section |
+| `distillery.png` | Homepage distillery band |
+| `cocktail-lifestyle.png` | Connect page hero |
+| `favicon.svg` | Site favicon |
 
-## Tips
+## Craft page (`craft/`)
 
-- Bottle images work best as transparent PNGs on the cream background.
-- The hero decanter should have a warm amber tone to blend with the gradient.
-- Until images are added, CSS gradient placeholders display automatically.
+| File | Used in |
+|------|---------|
+| `craft-hero.png` | Craft hero background |
+| `craft-source.png` | Source step |
+| `craft-distill.png` | Distill step |
+| `craft-age.png` | Age step |
+| `craft-release.png` | Release step |
+| `craft-atelier.png` | Atelier section |

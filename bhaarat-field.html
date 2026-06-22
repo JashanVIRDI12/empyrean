@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        if (sessionStorage.getItem('empyrean_age') === '1') {
+          document.documentElement.classList.add('age-verified');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <title>Bhaarat Field | Empyrean Spirits</title>
+  <meta name="description" content="Bhaarat Field — premium Indian whisky from sun-ripened heartland barley. Warm spice and golden malt from Empyrean Spirits.">
+  <meta name="theme-color" content="#080808">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Bhaarat Field | Empyrean Spirits">
+  <meta property="og:description" content="Bhaarat Field — premium Indian whisky from sun-ripened heartland barley. Warm spice and golden malt from Empyrean Spirits.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/bhaaratnobg.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="style.css?v=20">
+</head>
+<body class="inner-page has-subnav product-page">
+
+  <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-label="Age verification">
+    <div class="age-gate__box">
+      <div class="age-gate__logo">Empyrean Spirits</div>
+      <div class="age-gate__sub">Private Collection</div>
+      <p class="age-gate__q">Are you of legal drinking age in your country?</p>
+      <div class="age-gate__btns">
+        <button class="age-gate__btn age-gate__btn--yes" id="ageYes" type="button">Yes, Enter</button>
+        <button class="age-gate__btn age-gate__btn--no" id="ageNo" type="button">No</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="site-header__ticker">
+      <p class="sr-only">Please drink responsibly. Must be of legal drinking age to enter.</p>
+      <div class="site-header__ticker-track" aria-hidden="true">
+        <span>Please drink responsibly</span><span>·</span>
+        <span>Empyrean Spirits — Private Collection</span><span>·</span>
+        <span>Must be of legal drinking age</span><span>·</span>
+        <span>Please drink responsibly</span><span>·</span>
+        <span>Empyrean Spirits — Private Collection</span><span>·</span>
+        <span>Must be of legal drinking age</span><span>·</span>
+      </div>
+    </div>
+    <div class="site-header__bar">
+      <a href="index.html" class="site-header__logo">
+        <span class="site-header__monogram" aria-hidden="true">E</span>
+        <span class="site-header__wordmark">
+          <span class="site-header__wordmark-main">Empyrean</span>
+          <span class="site-header__wordmark-sub">Spirits</span>
+        </span>
+      </a>
+      <nav class="site-header__nav" aria-label="Primary">
+        <ul class="site-header__links">
+          <li><a href="index.html"><span class="site-header__link-num">01</span><span class="site-header__link-text">Discover</span></a></li>
+          <li><a href="collection.html" class="is-active" aria-current="page"><span class="site-header__link-num">02</span><span class="site-header__link-text">Collection</span></a></li>
+          <li><a href="craft.html"><span class="site-header__link-num">03</span><span class="site-header__link-text">Craft</span></a></li>
+          <li><a href="connect.html"><span class="site-header__link-num">04</span><span class="site-header__link-text">Connect</span></a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <a href="connect.html" class="site-header__cta">
+          <span>Book a Visit</span>
+          <svg class="site-header__cta-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+        <button class="site-header__menu" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+          <span class="site-header__menu-icon" aria-hidden="true"><span></span><span></span></span>
+        </button>
+      </div>
+    </div>
+    <div class="site-header__meta">
+      <nav class="site-header__crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="site-header__crumb-sep" aria-hidden="true">/</span>
+        <a href="collection.html">The Collection</a>
+        <span class="site-header__crumb-sep" aria-hidden="true">/</span>
+        <span class="site-header__crumb-current" aria-current="page">Bhaarat Field</span>
+      </nav>
+      <button class="site-header__share" id="shareBtn" type="button" aria-label="Share this page">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.7" y1="10.7" x2="15.3" y2="6.3"/><line x1="8.7" y1="13.3" x2="15.3" y2="17.7"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+    <div class="nav-drawer__panel" role="dialog" aria-modal="true" aria-label="Site menu">
+      <div class="nav-drawer__head">
+        <span class="nav-drawer__eyebrow">Private Collection</span>
+        <button class="nav-drawer__close" id="navClose" type="button" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <nav class="nav-drawer__nav" aria-label="Mobile">
+        <ul class="nav-drawer__links">
+          <li><a href="index.html"><span class="nav-drawer__num">01</span><span class="nav-drawer__label">Discover</span></a></li>
+          <li><a href="collection.html" class="is-active" aria-current="page"><span class="nav-drawer__num">02</span><span class="nav-drawer__label">Collection</span></a></li>
+          <li><a href="craft.html"><span class="nav-drawer__num">03</span><span class="nav-drawer__label">Craft</span></a></li>
+          <li><a href="connect.html"><span class="nav-drawer__num">04</span><span class="nav-drawer__label">Connect</span></a></li>
+        </ul>
+      </nav>
+      <a href="connect.html" class="nav-drawer__cta">Book a Visit</a>
+    </div>
+  </div>
+
+  <main>
+    <section class="product-hero" id="productHero">
+      <div class="product-hero__inner">
+        <div class="product-hero__visual">
+          <div class="product-hero__glow product-hero__glow--saffron" aria-hidden="true"></div>
+          <img src="images/bhaaratnobg.png" alt="Bhaarat Field Premium Indian Whisky" loading="eager">
+        </div>
+        <div class="product-hero__content">
+          <a href="collection.html" class="product-hero__back">Back to Collection</a>
+          <p class="product-hero__type">Premium Indian Whisky</p>
+          <h1 class="product-hero__name">Bhaarat Field</h1>
+          <p class="product-hero__tagline">Expression 05 · Private Release</p>
+          <p class="product-hero__desc">Distilled from sun-ripened barley drawn across open heartland fields. Warm spice, golden malt, and a finish that lingers like late harvest light — India's landscape translated into glass.</p>
+          <div class="product-hero__tags"><span class="product-hero__tag">Heartland Barley</span><span class="product-hero__tag">Indian Craft</span><span class="product-hero__tag">Sun-Ripened</span></div>
+          <div class="product-hero__actions">
+            <a href="connect.html#connectForm" class="product-hero__btn product-hero__btn--primary">Request Allocation</a>
+            <a href="craft.html" class="product-hero__btn product-hero__btn--ghost">The Craft</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-notes">
+      <h2 class="product-notes__heading">Tasting &amp; Provenance</h2>
+      <div class="product-notes__grid">
+<div class="product-notes__item"><p class="product-notes__label">Nose</p><p class="product-notes__value">Golden malt, warm spice, open field honey</p></div><div class="product-notes__item"><p class="product-notes__label">Palate</p><p class="product-notes__value">Ripe barley, saffron thread, gentle oak</p></div><div class="product-notes__item"><p class="product-notes__label">Finish</p><p class="product-notes__value">Long, luminous, harvest warmth</p></div><div class="product-notes__item"><p class="product-notes__label">Grain</p><p class="product-notes__value">Sun-Ripened Barley</p></div><div class="product-notes__item"><p class="product-notes__label">Craft</p><p class="product-notes__value">Indian Heartland</p></div><div class="product-notes__item"><p class="product-notes__label">Origin</p><p class="product-notes__value">India</p></div>
+      </div>
+    </section>
+
+    <section class="product-related">
+      <p class="product-related__heading">More from the Collection</p>
+      <div class="product-related__grid">
+          <a href="velvet-crown.html" class="product-related__card">
+            <img src="images/velevetcrownnobg.png" alt="Velvet Crown" loading="lazy">
+            <p class="product-related__name">Velvet Crown</p>
+            <p class="product-related__type">Single Malt Whiskey</p>
+          </a>
+          <a href="copper-ridge.html" class="product-related__card">
+            <img src="images/copperridgenobg.png" alt="Copper Ridge" loading="lazy">
+            <p class="product-related__name">Copper Ridge</p>
+            <p class="product-related__type">Bordeaux Red Wine</p>
+          </a>
+          <a href="liquid-velvet.html" class="product-related__card">
+            <img src="images/liquidvelvetnobg.png" alt="Liquid Velvet" loading="lazy">
+            <p class="product-related__name">Liquid Velvet</p>
+            <p class="product-related__type">Premium Vodka</p>
+          </a>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer-cta">
+    <div class="footer-cta__inner">
+      <div class="footer-cta__copy">
+        <p class="footer-cta__eyebrow">Private Collection</p>
+        <h2 class="footer-cta__title">Begin the <em>Conversation</em></h2>
+      </div>
+      <a href="connect.html#connectForm" class="footer-cta__btn">Request Allocation <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__ghost" aria-hidden="true">Empyrean</div>
+    <div class="footer__inner">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__brand-name">Empyrean Spirits</div>
+          <div class="footer__brand-sub">Private Collection</div>
+          <p class="footer__brand-desc">Five spirits, one philosophy: honour the grain, respect the barrel, reward the wait.</p>
+          <p class="footer__brand-loc">Highland Estate, Scotland<br>By appointment only</p>
+        </div>
+        <div class="footer__col">
+          <h4>Collection</h4>
+          <ul>
+            <li><a href="collection.html">View All Spirits</a></li>
+            <li><a href="velvet-crown.html">Velvet Crown</a></li>
+            <li><a href="liquid-velvet.html">Liquid Velvet</a></li>
+            <li><a href="gilded-grain.html">The Gilded Grain</a></li>
+            <li><a href="copper-ridge.html">Copper Ridge</a></li>
+            <li><a href="bhaarat-field.html">Bhaarat Field</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Discover</h4>
+          <ul>
+            <li><a href="index.html#story">Our Story</a></li>
+            <li><a href="collection.html">The Collection</a></li>
+            <li><a href="craft.html">The Craft</a></li>
+            <li><a href="connect.html">Events &amp; Visits</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="connect.html">Contact Us</a></li>
+            <li><a href="mailto:info@mngoverseas.com?subject=Press%20Kit%20Request">Press Kit</a></li>
+            <li><a href="mailto:info@mngoverseas.com">info@mngoverseas.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__rule" aria-hidden="true"></div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 Empyrean Spirits Private. All rights reserved.</p>
+        <p class="footer__legal">Please drink responsibly. Empyrean Spirits products are intended for adults of legal drinking age.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=20"></script>
+</body>
+</html>
