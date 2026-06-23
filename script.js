@@ -558,6 +558,22 @@
     hero.classList.add('hero--fallback');
   }
 
+  function getHeroVideoSrc() {
+    return isMobileLite() ? 'images/hero-mobile.mp4' : 'images/hero.mp4';
+  }
+
+  function attachHeroVideoSource(video) {
+    var src = getHeroVideoSrc();
+    var existing = video.querySelector('source');
+    if (existing && existing.getAttribute('src') === src) return;
+    if (existing) existing.remove();
+    var source = document.createElement('source');
+    source.src = src;
+    source.type = 'video/mp4';
+    video.appendChild(source);
+    video.load();
+  }
+
   function playHeroVideo() {
     var video = document.getElementById('heroVideo');
     if (!video) return;
@@ -577,11 +593,9 @@
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (video) {
-      // Only stream the hero video where it autoplays reliably and the bytes
-      // are worth it: capable desktops on a decent connection. Mobile, touch,
-      // slow networks, save-data and reduced-motion all fall back to the
-      // instant poster background — no wasted download, no iOS play button.
-      var useVideo = !reduced && !isMobileLite() && !isSlowConnection();
+      // Poster shows instantly; video plays on all devices unless reduced-motion,
+      // save-data, or a very slow connection. Mobile uses the lighter hero-mobile.mp4.
+      var useVideo = !reduced && !isSlowConnection();
 
       if (!useVideo) {
         hero.classList.add('hero--poster-only');
@@ -591,23 +605,18 @@
         video.muted = true;
         video.playsInline = true;
         video.loop = true;
-        video.preload = 'auto';
+        video.setAttribute('autoplay', '');
+        video.preload = isMobileLite() ? 'metadata' : 'auto';
 
-        var src = video.getAttribute('data-src');
-        if (src && !video.querySelector('source')) {
-          var source = document.createElement('source');
-          source.src = src;
-          source.type = 'video/mp4';
-          video.appendChild(source);
-          video.load();
-        }
+        attachHeroVideoSource(video);
 
         var fallbackTimer = setTimeout(function () {
           if (video.readyState < 2) setHeroFallback(hero);
-        }, 5000);
+        }, 6000);
 
         video.addEventListener('canplay', function () {
           clearTimeout(fallbackTimer);
+          hero.classList.remove('hero--fallback');
         }, { once: true });
 
         video.addEventListener('error', function () {
@@ -620,6 +629,11 @@
         document.addEventListener('visibilitychange', function () {
           if (!document.hidden) playHeroVideo();
         });
+
+        document.addEventListener('click', function retryOnce() {
+          playHeroVideo();
+          document.removeEventListener('click', retryOnce);
+        }, { once: true, passive: true });
       }
     }
 

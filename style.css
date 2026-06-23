@@ -843,16 +843,15 @@ body.is-nav-open {
   pointer-events: none;
 }
 
-/* Poster-only (mobile / slow / reduced-motion) and hard-fallback: drop the
-   <video> entirely so iOS can't render its play-button overlay. */
+/* Poster-only and error fallback — hide video, show background image. */
 .hero--poster-only .hero__video,
 .hero--fallback .hero__video {
   display: none;
 }
 
-/* Mobile uses a dedicated portrait-friendly hero photo instead of the video. */
 @media (max-width: 900px) {
-  .hero__media {
+  .hero--poster-only .hero__media,
+  .hero--fallback .hero__media {
     background-image: url('images/hero-mobile.webp');
     background-position: center bottom;
   }
