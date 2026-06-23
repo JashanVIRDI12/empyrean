@@ -194,7 +194,7 @@
     var AUTO_MS = 5000;
     var autoTimer = null;
     var hoverPaused = false;
-    var section = document.getElementById('spotlight');
+    var bottles = track.querySelectorAll('.spotlight__bottle');
 
     function pad(n) {
       return n < 10 ? '0' + n : String(n);
@@ -309,26 +309,16 @@
       if (e.key === 'ArrowLeft') { e.preventDefault(); goTo((active - 1 + N) % N); }
     });
 
-    if (section) {
-      section.addEventListener('mouseenter', function () {
+    bottles.forEach(function (bottle) {
+      bottle.addEventListener('mouseenter', function () {
         hoverPaused = true;
         stopAutoplay();
       });
-      section.addEventListener('mouseleave', function () {
+      bottle.addEventListener('mouseleave', function () {
         hoverPaused = false;
         scheduleAutoplay();
       });
-      section.addEventListener('focusin', function () {
-        hoverPaused = true;
-        stopAutoplay();
-      });
-      section.addEventListener('focusout', function (e) {
-        if (!section.contains(e.relatedTarget)) {
-          hoverPaused = false;
-          scheduleAutoplay();
-        }
-      });
-    }
+    });
 
     document.addEventListener('visibilitychange', function () {
       if (document.hidden) stopAutoplay();
