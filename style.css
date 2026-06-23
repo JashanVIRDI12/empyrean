@@ -850,6 +850,14 @@ body.is-nav-open {
   display: none;
 }
 
+/* Mobile uses a dedicated portrait-friendly hero photo instead of the video. */
+@media (max-width: 900px) {
+  .hero__media {
+    background-image: url('images/hero-mobile.webp');
+    background-position: center bottom;
+  }
+}
+
 .hero__veil {
   position: absolute;
   inset: 0;
@@ -2371,8 +2379,9 @@ body.is-nav-open {
     font-size: clamp(2.2rem, 14vw, 4rem);
   }
 
+  /* Solo focal bottle gets a little more presence on phones. */
   .cp-bottle img {
-    height: 280px;
+    height: 300px;
   }
 
   .cp-info__name {

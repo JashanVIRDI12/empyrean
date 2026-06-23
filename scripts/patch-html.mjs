@@ -11,7 +11,7 @@ const FONT_LINKS = `  <link rel="preconnect" href="https://fonts.googleapis.com"
 
 const FOOTER_SCRIPTS = `  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
-  <script defer src="script.js?v=23"></script>`;
+  <script defer src="script.js?v=24"></script>`;
 
 for (const file of readdirSync(root).filter((f) => f.endsWith('.html'))) {
   let html = readFileSync(join(root, file), 'utf8');
@@ -29,7 +29,7 @@ for (const file of readdirSync(root).filter((f) => f.endsWith('.html'))) {
     );
   }
 
-  html = html.replace(/style\.css\?v=\d+/g, 'style.css?v=23');
+  html = html.replace(/style\.css\?v=\d+/g, 'style.css?v=24');
 
   writeFileSync(join(root, file), html);
   console.log('patched', file);

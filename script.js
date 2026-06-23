@@ -199,15 +199,19 @@
     }
 
     // ── Position state → GSAP vars ──
+    // On phones we show only the focal bottle — the peeking side bottles look
+    // cramped, so they fade fully out for a cleaner, simpler crossfade.
+    function narrow()  { return window.innerWidth <= 600; }
     function stageW() { return cpTrack.offsetWidth || 700; }
-    function sideX()  { return Math.min(stageW() * (window.innerWidth <= 600 ? 0.22 : 0.3), window.innerWidth <= 600 ? 120 : 230); }
+    function sideX()  { return Math.min(stageW() * (narrow() ? 0.22 : 0.3), narrow() ? 120 : 230); }
+    function sideAlpha() { return narrow() ? 0 : 0.42; }
 
     var POS = {
-      center:      function () { return { x: 0,             scale: 1,    autoAlpha: 1,    zIndex: 3 }; },
-      left:        function () { return { x: -sideX(),      scale: 0.58, autoAlpha: 0.42, zIndex: 2 }; },
-      right:       function () { return { x:  sideX(),      scale: 0.58, autoAlpha: 0.42, zIndex: 2 }; },
-      'off-left':  function () { return { x: -sideX() * 2,  scale: 0.35, autoAlpha: 0,    zIndex: 1 }; },
-      'off-right': function () { return { x:  sideX() * 2,  scale: 0.35, autoAlpha: 0,    zIndex: 1 }; },
+      center:      function () { return { x: 0,             scale: 1,    autoAlpha: 1,           zIndex: 3 }; },
+      left:        function () { return { x: -sideX(),      scale: 0.58, autoAlpha: sideAlpha(), zIndex: 2 }; },
+      right:       function () { return { x:  sideX(),      scale: 0.58, autoAlpha: sideAlpha(), zIndex: 2 }; },
+      'off-left':  function () { return { x: -sideX() * 2,  scale: 0.35, autoAlpha: 0,           zIndex: 1 }; },
+      'off-right': function () { return { x:  sideX() * 2,  scale: 0.35, autoAlpha: 0,           zIndex: 1 }; },
     };
 
     // Named position of bottle[i] given a center index
