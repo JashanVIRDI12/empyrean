@@ -1005,7 +1005,7 @@ body.is-nav-open {
 /* ── Bottle Stage ── */
 .curators-pick__stage {
   position: relative;
-  height: 500px;
+  height: 580px;
 }
 
 .curators-pick__watermark {
@@ -1045,7 +1045,7 @@ body.is-nav-open {
 
 .cp-bottle img {
   display: block;
-  height: 420px;
+  height: 500px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.7));
@@ -1409,7 +1409,7 @@ body.is-nav-open {
 
 .collection__visual {
   position: relative;
-  min-height: 300px;
+  min-height: 360px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -1420,7 +1420,7 @@ body.is-nav-open {
 
 .collection__visual img {
   height: auto;
-  max-height: 280px;
+  max-height: 340px;
   width: auto;
   max-width: 100%;
   object-fit: contain;
@@ -2179,7 +2179,7 @@ body.is-nav-open {
   }
 
   .curators-pick__stage {
-    height: 420px;
+    height: 480px;
   }
 
   .curators-pick__info-wrap {
@@ -2306,12 +2306,12 @@ body.is-nav-open {
   }
 
   .collection__visual {
-    min-height: 260px;
+    min-height: 300px;
     padding-bottom: 0.5rem;
   }
 
   .collection__visual img {
-    max-height: 240px;
+    max-height: 300px;
   }
 }
 
@@ -2359,7 +2359,7 @@ body.is-nav-open {
   }
 
   .curators-pick__stage {
-    height: 320px;
+    height: 400px;
   }
 
   .curators-pick__arrow {
@@ -2379,9 +2379,9 @@ body.is-nav-open {
     font-size: clamp(2.2rem, 14vw, 4rem);
   }
 
-  /* Solo focal bottle gets a little more presence on phones. */
+  /* Solo focal bottle — larger on phones */
   .cp-bottle img {
-    height: 300px;
+    height: 380px;
   }
 
   .cp-info__name {
@@ -2424,13 +2424,13 @@ body.is-nav-open {
   }
 
   .collection__visual {
-    min-height: 220px;
+    min-height: 280px;
     margin-bottom: 1.25rem;
     padding-bottom: 0.5rem;
   }
 
   .collection__visual img {
-    max-height: 200px;
+    max-height: 280px;
   }
 
   .collection__arrow {
@@ -2548,11 +2548,11 @@ body.is-nav-open {
 
 @media (max-width: 480px) {
   .curators-pick__stage {
-    height: 290px;
+    height: 360px;
   }
 
   .cp-bottle img {
-    height: 250px;
+    height: 340px;
   }
 
   .categories__item {
@@ -4800,14 +4800,11 @@ a.connect-reach__val:hover {
   .collection__card {
     flex: 0 0 min(100%, calc(100% - 1rem));
   }
+  .collection__visual {
+    min-height: 280px;
+  }
   .collection__visual img {
-    max-height: 210px;
-  }
-  .curators-pick__stage {
-    height: 300px;
-  }
-  .cp-bottle img {
-    height: 250px;
+    max-height: 280px;
   }
 }
 
