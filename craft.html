@@ -19,11 +19,12 @@
   <meta property="og:title" content="The Craft | Empyrean Spirits">
   <meta property="og:description" content="Barrel-aged patience. Discover the distillation, aging, and release philosophy behind Empyrean Spirits.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="images/craft/craft-hero.png">
+  <meta property="og:image" content="images/craft/craft-hero.webp">
   <meta name="twitter:card" content="summary_large_image">
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
-  <link rel="stylesheet" href="style.css?v=20">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
+  <link rel="stylesheet" href="style.css?v=21">
 </head>
 <body class="inner-page has-subnav craft-page">
 
@@ -112,7 +113,7 @@
   <main>
     <section class="craft-hero">
       <div class="craft-hero__bg" aria-hidden="true">
-        <img src="images/craft/craft-hero.png" alt="">
+        <img src="images/craft/craft-hero.webp" alt="">
       </div>
       <div class="craft-hero__veil" aria-hidden="true"></div>
       <div class="craft-hero__inner">
@@ -170,7 +171,7 @@
             <article class="craft-act-panel is-active" data-index="0">
               <span class="craft-act-panel__ghost" aria-hidden="true">01</span>
               <figure class="craft-act-panel__figure">
-                <img src="images/craft/craft-source.png" alt="Hand-selected barley and winter wheat" loading="lazy">
+                <img src="images/craft/craft-source.webp" alt="Hand-selected barley and winter wheat" loading="lazy" decoding="async">
               </figure>
               <div class="craft-act-panel__detail">
                 <h3 class="craft-act-panel__name">Source</h3>
@@ -180,7 +181,7 @@
             <article class="craft-act-panel" data-index="1">
               <span class="craft-act-panel__ghost" aria-hidden="true">02</span>
               <figure class="craft-act-panel__figure">
-                <img src="images/craft/craft-distill.png" alt="Copper still with rising steam" loading="lazy">
+                <img src="images/craft/craft-distill.webp" alt="Copper still with rising steam" loading="lazy" decoding="async">
               </figure>
               <div class="craft-act-panel__detail">
                 <h3 class="craft-act-panel__name">Distill</h3>
@@ -190,7 +191,7 @@
             <article class="craft-act-panel" data-index="2">
               <span class="craft-act-panel__ghost" aria-hidden="true">03</span>
               <figure class="craft-act-panel__figure">
-                <img src="images/craft/craft-age.png" alt="Oak barrels in a stone cellar" loading="lazy">
+                <img src="images/craft/craft-age.webp" alt="Oak barrels in a stone cellar" loading="lazy" decoding="async">
               </figure>
               <div class="craft-act-panel__detail">
                 <h3 class="craft-act-panel__name">Age</h3>
@@ -200,7 +201,7 @@
             <article class="craft-act-panel" data-index="3">
               <span class="craft-act-panel__ghost" aria-hidden="true">04</span>
               <figure class="craft-act-panel__figure">
-                <img src="images/craft/craft-release.png" alt="Amber spirit poured into crystal glass" loading="lazy">
+                <img src="images/craft/craft-release.webp" alt="Amber spirit poured into crystal glass" loading="lazy" decoding="async">
               </figure>
               <div class="craft-act-panel__detail">
                 <h3 class="craft-act-panel__name">Release</h3>
@@ -235,7 +236,7 @@
 
     <section class="craft-salon">
       <figure class="craft-salon__media">
-        <img src="images/craft/craft-atelier.png" alt="Nosing glass in the Empyrean atelier" loading="lazy">
+        <img src="images/craft/craft-atelier.webp" alt="Nosing glass in the Empyrean atelier" loading="lazy" decoding="async">
       </figure>
       <div class="craft-salon__panel">
         <p class="craft-salon__label">The Atelier</p>
@@ -316,6 +317,8 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
+  <script defer src="script.js?v=21"></script>
 </body>
 </html>

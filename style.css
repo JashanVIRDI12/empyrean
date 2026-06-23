@@ -3,7 +3,7 @@
    Black · Cream · Amber · Editorial Serif
    ═══════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;1,6..96,400;1,6..96,500;1,6..96,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap');
+/* Fonts loaded via <link> in HTML for faster first paint */
 
 :root {
   --black: #000000;
@@ -832,9 +832,19 @@ body.is-nav-open {
 .hero__video {
   width: 100%;
   height: 100%;
+  min-height: 100dvh;
   display: block;
   object-fit: cover;
   object-position: center;
+}
+
+.hero--fallback .hero__media {
+  background: #080808 url('images/hero-poster.webp') center / cover no-repeat;
+}
+
+.hero--fallback .hero__video {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .hero__veil {
@@ -1333,6 +1343,7 @@ body.is-nav-open {
 
 .collection__viewport {
   position: relative;
+  max-width: 100%;
 }
 
 .collection__track {
@@ -2214,7 +2225,7 @@ body.is-nav-open {
   }
 
   .collection__card {
-    flex: 0 0 min(300px, calc(100vw - 4.5rem));
+    flex: 0 0 min(300px, calc(100% - 1rem));
   }
 
   .categories {
@@ -2391,7 +2402,7 @@ body.is-nav-open {
   }
 
   .collection__card {
-    flex: 0 0 calc(100vw - 4rem);
+    flex: 0 0 min(100%, calc(100% - 1.5rem));
     padding: 1.35rem 1.35rem 1.75rem;
   }
 
@@ -2509,7 +2520,7 @@ body.is-nav-open {
 
   .age-gate__box {
     padding: 1.5rem 1.25rem;
-    max-width: calc(100vw - 2rem);
+    max-width: min(420px, calc(100% - 2rem));
   }
 
   .age-gate__btns {
@@ -3754,6 +3765,12 @@ html:has(body.has-subnav) {
     padding-top: 4rem;
   }
 
+  .craft-acts__pin {
+    position: relative;
+    height: auto;
+    min-height: 0;
+  }
+
   .craft-acts__aside {
     gap: 2rem;
   }
@@ -4197,6 +4214,21 @@ a.connect-reach__val:hover {
   .connect-hero {
     min-height: 62vh;
   }
+
+  .connect-reach__layout {
+    gap: 2.5rem;
+  }
+
+  .connect-form {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .connect-form__field input,
+  .connect-form__field select,
+  .connect-form__field textarea {
+    font-size: 16px;
+  }
 }
 
 /* ── Product Detail Page ── */
@@ -4550,6 +4582,16 @@ a.connect-reach__val:hover {
 }
 
 @media (max-width: 600px) {
+  .coll-panel__name {
+    font-size: clamp(2rem, 10vw, 2.75rem);
+  }
+
+  .coll-panel__cta {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
   .page-hero {
     padding-top: 3.5rem;
     padding-bottom: 2.5rem;
@@ -4731,12 +4773,20 @@ a.connect-reach__val:hover {
     font-size: 0.56rem;
     letter-spacing: 0.22em;
   }
+
+  .product-hero__visual {
+    min-height: 280px;
+  }
+
+  .product-hero__visual img {
+    height: 260px;
+  }
 }
 
 /* Collection cards: slightly wider on small mobile */
 @media (max-width: 600px) {
   .collection__card {
-    flex: 0 0 calc(100vw - 3.5rem);
+    flex: 0 0 min(100%, calc(100% - 1rem));
   }
   .collection__visual img {
     max-height: 210px;

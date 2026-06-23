@@ -19,11 +19,12 @@
   <meta property="og:title" content="Empyrean Spirits | Private Collection">
   <meta property="og:description" content="Five distinct spirits. One uncompromising standard. Explore Velvet Crown, Liquid Velvet, The Gilded Grain, Copper Ridge, and Bhaarat Field.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="images/velevetcrownnobg.png">
+  <meta property="og:image" content="images/velevetcrownnobg.webp">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="style.css?v=20">
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
+  <link rel="stylesheet" href="style.css?v=21">
 </head>
 <body>
 
@@ -108,8 +109,9 @@
     <!-- ══ HERO — video background ══ -->
     <section class="hero" id="hero">
       <div class="hero__media" aria-hidden="true">
-        <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto">
-          <source src="images/Detailed_hero_video_prompt_—_l_gwr_video_mvp.mp4" type="video/mp4">
+        <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="images/hero-poster.webp">
+          <source src="images/hero-mobile.mp4" type="video/mp4" media="(max-width: 900px)">
+          <source src="images/hero.mp4" type="video/mp4">
         </video>
       </div>
       <div class="hero__veil" aria-hidden="true"></div>
@@ -164,23 +166,23 @@
             <div class="curators-pick__track" id="curatorsTrack">
               <div class="cp-bottle" data-index="0">
                 <div class="cp-bottle__glow cp-glow--amber" aria-hidden="true"></div>
-                <img src="images/velevetcrownnobg.png" alt="Velvet Crown 18-Year Single Malt" loading="lazy">
+                <img src="images/velevetcrownnobg.webp" alt="Velvet Crown 18-Year Single Malt" loading="lazy" decoding="async">
               </div>
               <div class="cp-bottle" data-index="1">
                 <div class="cp-bottle__glow cp-glow--cool" aria-hidden="true"></div>
-                <img src="images/liquidvelvetnobg.png" alt="Liquid Velvet Premium Vodka" loading="lazy">
+                <img src="images/liquidvelvetnobg.webp" alt="Liquid Velvet Premium Vodka" loading="lazy" decoding="async">
               </div>
               <div class="cp-bottle" data-index="2">
                 <div class="cp-bottle__glow cp-glow--warm" aria-hidden="true"></div>
-                <img src="images/gildedgrainnobg.png" alt="The Gilded Grain Fine Aged Rum" loading="lazy">
+                <img src="images/gildedgrainnobg.webp" alt="The Gilded Grain Fine Aged Rum" loading="lazy" decoding="async">
               </div>
               <div class="cp-bottle" data-index="3">
                 <div class="cp-bottle__glow cp-glow--wine" aria-hidden="true"></div>
-                <img src="images/copperridgenobg.png" alt="Copper Ridge Bordeaux Red Wine" loading="lazy">
+                <img src="images/copperridgenobg.webp" alt="Copper Ridge Bordeaux Red Wine" loading="lazy" decoding="async">
               </div>
               <div class="cp-bottle" data-index="4">
                 <div class="cp-bottle__glow cp-glow--saffron" aria-hidden="true"></div>
-                <img src="images/bhaaratnobg.png" alt="Bhaarat Field Premium Indian Whisky" loading="lazy">
+                <img src="images/bhaaratnobg.webp" alt="Bhaarat Field Premium Indian Whisky" loading="lazy" decoding="async">
               </div>
             </div>
 
@@ -274,7 +276,7 @@
               <span class="collection__num" aria-hidden="true">01</span>
               <div class="collection__visual">
                 <div class="collection__glow collection__glow--amber" aria-hidden="true"></div>
-                <img src="images/velevetcrownnobg.png" alt="Velvet Crown 18-Year Single Malt Whiskey" loading="lazy">
+                <img src="images/velevetcrownnobg.webp" alt="Velvet Crown 18-Year Single Malt Whiskey" loading="lazy" decoding="async">
               </div>
               <div class="collection__body">
                 <p class="collection__type">Single Malt Whiskey</p>
@@ -287,7 +289,7 @@
               <span class="collection__num" aria-hidden="true">02</span>
               <div class="collection__visual">
                 <div class="collection__glow collection__glow--cool" aria-hidden="true"></div>
-                <img src="images/liquidvelvetnobg.png" alt="Liquid Velvet Premium Vodka" loading="lazy">
+                <img src="images/liquidvelvetnobg.webp" alt="Liquid Velvet Premium Vodka" loading="lazy" decoding="async">
               </div>
               <div class="collection__body">
                 <p class="collection__type">Premium Vodka</p>
@@ -300,7 +302,7 @@
               <span class="collection__num" aria-hidden="true">03</span>
               <div class="collection__visual">
                 <div class="collection__glow collection__glow--warm" aria-hidden="true"></div>
-                <img src="images/gildedgrainnobg.png" alt="The Gilded Grain Fine Aged Rum" loading="lazy">
+                <img src="images/gildedgrainnobg.webp" alt="The Gilded Grain Fine Aged Rum" loading="lazy" decoding="async">
               </div>
               <div class="collection__body">
                 <p class="collection__type">Fine Aged Rum</p>
@@ -313,7 +315,7 @@
               <span class="collection__num" aria-hidden="true">04</span>
               <div class="collection__visual">
                 <div class="collection__glow collection__glow--wine" aria-hidden="true"></div>
-                <img src="images/copperridgenobg.png" alt="Copper Ridge Bordeaux Red Wine" loading="lazy">
+                <img src="images/copperridgenobg.webp" alt="Copper Ridge Bordeaux Red Wine" loading="lazy" decoding="async">
               </div>
               <div class="collection__body">
                 <p class="collection__type">Bordeaux Red Wine</p>
@@ -326,7 +328,7 @@
               <span class="collection__num" aria-hidden="true">05</span>
               <div class="collection__visual">
                 <div class="collection__glow collection__glow--saffron" aria-hidden="true"></div>
-                <img src="images/bhaaratnobg.png" alt="Bhaarat Field Premium Indian Whisky" loading="lazy">
+                <img src="images/bhaaratnobg.webp" alt="Bhaarat Field Premium Indian Whisky" loading="lazy" decoding="async">
               </div>
               <div class="collection__body">
                 <p class="collection__type">Premium Indian Whisky</p>
@@ -349,7 +351,7 @@
         <div class="philosophy__grid">
           <div class="philosophy__visual" data-reveal>
             <div class="philosophy__frame">
-              <img class="philosophy__img-main" src="images/pouring.png" alt="Whiskey being poured over a single ice sphere" loading="lazy">
+              <img class="philosophy__img-main" src="images/pouring.webp" alt="Whiskey being poured over a single ice sphere" loading="lazy" decoding="async">
               <div class="philosophy__frame-line" aria-hidden="true"></div>
             </div>
           </div>
@@ -384,7 +386,7 @@
     <!-- ══ THE CRAFT ══ -->
     <section class="craft" id="craft">
       <div class="craft__bg" aria-hidden="true">
-        <img src="images/distillery.png" alt="" loading="lazy">
+        <img src="images/distillery.webp" alt="" loading="lazy" decoding="async">
       </div>
       <div class="craft__overlay" aria-hidden="true"></div>
       <div class="craft__inner">
@@ -457,6 +459,8 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
+  <script defer src="script.js?v=21"></script>
 </body>
 </html>
