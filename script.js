@@ -175,223 +175,168 @@
     });
   }
 
-  // ── Curator's Pick — expanding bottle carousel ──
+  // ── Featured Selection — spotlight switcher ──
   (function () {
-    var cpTrack   = document.getElementById('curatorsTrack');
-    var cpInfo    = document.getElementById('curatorsInfo');
-    var cpDots    = document.getElementById('carouselDots');
-    var cpCounter = document.getElementById('carouselCounter');
-    var cpPrev    = document.getElementById('carouselPrev');
-    var cpNext    = document.getElementById('carouselNext');
+    var viewport   = document.getElementById('spotlightViewport');
+    var track      = document.getElementById('spotlightTrack');
+    var prevBtn    = document.getElementById('spotlightPrev');
+    var nextBtn    = document.getElementById('spotlightNext');
+    var countEl    = document.getElementById('spotlightCountCurrent');
+    var progressEl = document.getElementById('spotlightProgress');
 
-    if (!cpTrack || typeof gsap === 'undefined') return;
+    if (!viewport || !track) return;
 
-    var bottles  = Array.from(cpTrack.querySelectorAll('.cp-bottle'));
-    var infos    = cpInfo  ? Array.from(cpInfo.querySelectorAll('.cp-info'))                    : [];
-    var dots     = cpDots  ? Array.from(cpDots.querySelectorAll('.curators-pick__dot'))         : [];
-    var N        = bottles.length; // 4
-    var active   = 0;
-    var busy     = false;
+    var slides = Array.from(track.querySelectorAll('.spotlight__slide'));
+    var N      = slides.length;
+    var active = 0;
+    var busy   = false;
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var AUTO_MS = 5000;
+    var autoTimer = null;
+    var hoverPaused = false;
+    var section = document.getElementById('spotlight');
 
-    function syncInfoWrapHeight() {
-      if (!cpInfo) return;
-      cpInfo.style.height = '';
+    function pad(n) {
+      return n < 10 ? '0' + n : String(n);
     }
 
-    // ── Position state → GSAP vars ──
-    // On phones we show only the focal bottle — the peeking side bottles look
-    // cramped, so they fade fully out for a cleaner, simpler crossfade.
-    function narrow()  { return window.innerWidth <= 600; }
-    function stageW() { return cpTrack.offsetWidth || 700; }
-    function sideX()  { return Math.min(stageW() * (narrow() ? 0.22 : 0.3), narrow() ? 120 : 230); }
-    function sideAlpha() { return narrow() ? 0 : 0.42; }
-
-    var POS = {
-      center:      function () { return { x: 0,             scale: 1,    autoAlpha: 1,           zIndex: 3 }; },
-      left:        function () { return { x: -sideX(),      scale: 0.58, autoAlpha: sideAlpha(), zIndex: 2 }; },
-      right:       function () { return { x:  sideX(),      scale: 0.58, autoAlpha: sideAlpha(), zIndex: 2 }; },
-      'off-left':  function () { return { x: -sideX() * 2,  scale: 0.35, autoAlpha: 0,           zIndex: 1 }; },
-      'off-right': function () { return { x:  sideX() * 2,  scale: 0.35, autoAlpha: 0,           zIndex: 1 }; },
-    };
-
-    // Named position of bottle[i] given a center index
-    function posName(i, center) {
-      var diff = (i - center + N) % N;
-      if (diff === 0)     return 'center';
-      if (diff === 1)     return 'right';
-      if (diff === N - 1) return 'left';
-      return null; // hidden
+    function stopTimerBar() {
+      if (!progressEl) return;
+      progressEl.classList.remove('is-running');
+      progressEl.style.animationPlayState = '';
+      progressEl.style.transform = 'scaleX(0)';
     }
 
-    // Shortest direction between two indices
-    function direction(from, to) {
-      var fwd = (to - from + N) % N;
-      return fwd <= N / 2 ? 'next' : 'prev';
+    function startTimerBar() {
+      if (!progressEl) return;
+      stopTimerBar();
+      if (reducedMotion || hoverPaused || N < 2 || document.hidden) return;
+      progressEl.style.setProperty('--spotlight-timer-duration', AUTO_MS + 'ms');
+      void progressEl.offsetWidth;
+      progressEl.classList.add('is-running');
     }
 
-    // ── Sync counter + dots (no animation) ──
-    function syncUI(idx) {
-      if (cpCounter) cpCounter.textContent = (idx + 1 < 10 ? '0' : '') + (idx + 1) + ' / 0' + N;
-      dots.forEach(function (d, i) {
-        var a = i === idx;
-        d.classList.toggle('is-active', a);
-        d.setAttribute('aria-selected', a ? 'true' : 'false');
-      });
-    }
-
-    // ── Place bottles at initial positions (instant) ──
-    function init() {
-      bottles.forEach(function (b, i) {
-        var pos = posName(i, active);
-        // The one hidden bottle starts off-right so it can enter from the right on first "next"
-        var vars = Object.assign({ transformOrigin: 'bottom center' }, POS[pos || 'off-right']());
-        gsap.set(b, vars);
-        b.classList.toggle('is-center', pos === 'center');
-      });
-      // Show first info panel
-      if (infos.length) {
-        infos.forEach(function (p, i) {
-          gsap.set(p, { autoAlpha: i === active ? 1 : 0, y: 0 });
-          p.classList.toggle('is-active', i === active);
-        });
+    function stopAutoplay() {
+      if (autoTimer) {
+        clearTimeout(autoTimer);
+        autoTimer = null;
       }
-      syncUI(active);
-      syncInfoWrapHeight();
+      stopTimerBar();
     }
 
-    // ── Main transition — all bottles move in lockstep ──
-    var MOVE_DUR  = isMobileLite() ? 0.42 : 0.62;
-    var MOVE_EASE = 'power2.inOut';
+    function scheduleAutoplay() {
+      stopAutoplay();
+      if (reducedMotion || hoverPaused || N < 2 || document.hidden) return;
+      startTimerBar();
+      autoTimer = window.setTimeout(function () {
+        goTo((active + 1) % N);
+      }, AUTO_MS);
+    }
+
+    function syncUI(idx) {
+      if (countEl) countEl.textContent = pad(idx + 1);
+    }
+
+    function animateIn(slide) {
+      if (reducedMotion || typeof gsap === 'undefined') return;
+      var bottle = slide.querySelector('.spotlight__bottle');
+      var detail = slide.querySelector('.spotlight__detail');
+      if (bottle) {
+        gsap.fromTo(bottle,
+          { scale: 0.94, y: 14, autoAlpha: 0.85 },
+          { scale: 1, y: 0, autoAlpha: 1, duration: isMobileLite() ? 0.42 : 0.62, ease: 'power2.out' }
+        );
+      }
+      if (detail) {
+        gsap.fromTo(detail,
+          { y: 18, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: isMobileLite() ? 0.38 : 0.52, ease: 'power2.out', delay: 0.06 }
+        );
+      }
+    }
 
     function goTo(next) {
       if (busy || next === active) return;
       busy = true;
 
       var prev = active;
-      var dir  = direction(prev, next);
-      active   = next;
+      active = next;
 
-      var tl = gsap.timeline({
-        onComplete: function () {
-          bottles.forEach(function (b, i) {
-            var pos = posName(i, next);
-            b.classList.toggle('is-center', pos === 'center');
-            if (pos) gsap.set(b, { zIndex: POS[pos]().zIndex });
-          });
-          syncInfoWrapHeight();
-          busy = false;
-        }
-      });
+      slides[prev].classList.remove('is-active');
+      slides[prev].setAttribute('aria-hidden', 'true');
 
-      bottles.forEach(function (b, i) {
-        var fromName = posName(i, prev);
-        var toName   = posName(i, next);
-        var actualFrom, actualTo;
-
-        if (fromName === null) {
-          actualFrom = dir === 'next' ? 'off-right' : 'off-left';
-          gsap.set(b, Object.assign({ transformOrigin: 'bottom center' }, POS[actualFrom]()));
-        }
-
-        if (toName === null) {
-          if (fromName === 'left')       actualTo = 'off-left';
-          else if (fromName === 'right') actualTo = 'off-right';
-          else actualTo = dir === 'next' ? 'off-left' : 'off-right';
-        } else {
-          actualTo = toName;
-        }
-
-        b.classList.remove('is-center');
-
-        // Stack incoming center above outgoing center during the cross-move
-        var startZ = 2;
-        if (actualTo === 'center')        startZ = 4;
-        else if (fromName === 'center')   startZ = 3;
-        gsap.set(b, { zIndex: startZ });
-
-        var target = POS[actualTo]();
-        tl.to(b, {
-          x: target.x,
-          scale: target.scale,
-          autoAlpha: target.autoAlpha,
-          transformOrigin: 'bottom center',
-          duration: MOVE_DUR,
-          ease: MOVE_EASE,
-          overwrite: 'auto'
-        }, 0);
-      });
-
-      // Info panel — fade in sync with bottles
-      if (infos.length) {
-        var outInfo = infos[prev];
-        var inInfo  = infos[next];
-
-        outInfo.classList.remove('is-active');
-        inInfo.classList.add('is-active');
-        syncInfoWrapHeight();
-
-        tl.to(outInfo, {
-          autoAlpha: 0,
-          duration: MOVE_DUR * 0.45,
-          ease: 'power2.in'
-        }, 0);
-
-        gsap.set(inInfo, { autoAlpha: 0 });
-        tl.to(inInfo, { autoAlpha: 1, duration: MOVE_DUR * 0.55, ease: 'power2.out' }, MOVE_DUR * 0.35);
-      }
+      var inSlide = slides[next];
+      inSlide.classList.add('is-active');
+      inSlide.setAttribute('aria-hidden', 'false');
 
       syncUI(next);
+      animateIn(inSlide);
+
+      window.setTimeout(function () { busy = false; }, reducedMotion ? 0 : 420);
+
+      scheduleAutoplay();
     }
 
-    // Boot after layout so stage dimensions are correct
-    function boot() {
-      init();
-      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () { goTo((active + 1) % N); });
     }
-    if (document.readyState === 'complete') {
-      requestAnimationFrame(function () { requestAnimationFrame(boot); });
-    } else {
-      window.addEventListener('load', function () {
-        requestAnimationFrame(function () { requestAnimationFrame(boot); });
-      });
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () { goTo((active - 1 + N) % N); });
     }
 
-    if (cpNext) cpNext.addEventListener('click', function () { goTo((active + 1) % N); });
-    if (cpPrev) cpPrev.addEventListener('click', function () { goTo((active - 1 + N) % N); });
-    dots.forEach(function (d) {
-      d.addEventListener('click', function () { goTo(parseInt(this.getAttribute('data-slide'), 10)); });
+    var swipeStartX = 0;
+    var swipeStartY = 0;
+    viewport.addEventListener('touchstart', function (e) {
+      if (!e.changedTouches[0]) return;
+      swipeStartX = e.changedTouches[0].clientX;
+      swipeStartY = e.changedTouches[0].clientY;
+      stopAutoplay();
+    }, { passive: true });
+    viewport.addEventListener('touchend', function (e) {
+      if (!e.changedTouches[0]) return;
+      var dx = e.changedTouches[0].clientX - swipeStartX;
+      var dy = e.changedTouches[0].clientY - swipeStartY;
+      if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+        if (dx < 0) goTo((active + 1) % N);
+        else goTo((active - 1 + N) % N);
+      } else {
+        scheduleAutoplay();
+      }
+    }, { passive: true });
+
+    viewport.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo((active + 1) % N); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); goTo((active - 1 + N) % N); }
     });
 
-    // Swipe on bottle stage (touch)
-    var cpStage = document.querySelector('.curators-pick__stage');
-    if (cpStage) {
-      var swipeStartX = 0;
-      var swipeStartY = 0;
-      cpStage.addEventListener('touchstart', function (e) {
-        if (!e.changedTouches[0]) return;
-        swipeStartX = e.changedTouches[0].clientX;
-        swipeStartY = e.changedTouches[0].clientY;
-      }, { passive: true });
-      cpStage.addEventListener('touchend', function (e) {
-        if (!e.changedTouches[0]) return;
-        var dx = e.changedTouches[0].clientX - swipeStartX;
-        var dy = e.changedTouches[0].clientY - swipeStartY;
-        if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.2) {
-          if (dx < 0) goTo((active + 1) % N);
-          else goTo((active - 1 + N) % N);
+    if (section) {
+      section.addEventListener('mouseenter', function () {
+        hoverPaused = true;
+        stopAutoplay();
+      });
+      section.addEventListener('mouseleave', function () {
+        hoverPaused = false;
+        scheduleAutoplay();
+      });
+      section.addEventListener('focusin', function () {
+        hoverPaused = true;
+        stopAutoplay();
+      });
+      section.addEventListener('focusout', function (e) {
+        if (!section.contains(e.relatedTarget)) {
+          hoverPaused = false;
+          scheduleAutoplay();
         }
-      }, { passive: true });
+      });
     }
 
-    // Refresh positions on resize
-    window.addEventListener('resize', function () {
-      bottles.forEach(function (b, i) {
-        var pos = posName(i, active);
-        if (!pos) return;
-        gsap.set(b, Object.assign({ transformOrigin: 'bottom center' }, POS[pos]()));
-      });
-      syncInfoWrapHeight();
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stopAutoplay();
+      else scheduleAutoplay();
     });
+
+    syncUI(active);
+    scheduleAutoplay();
   }());
 
   // ── Collection track — native touch scroll + desktop drag ──
@@ -1207,53 +1152,43 @@
       }
     }
 
-    // ── Curator's Pick — entrance + parallax ──
-    var cp = document.getElementById('curatorsPick');
-    if (cp) {
-      var cpTl = gsap.timeline({
-        scrollTrigger: { trigger: cp, start: 'top 82%', once: true }
+    // ── Featured Selection — entrance ──
+    var spotlight = document.getElementById('spotlight');
+    if (spotlight) {
+      var spotTl = gsap.timeline({
+        scrollTrigger: { trigger: spotlight, start: 'top 82%', once: true }
       });
 
-      cpTl
-        .from(cp.querySelector('.curators-pick__eyebrow'), withoutBlur({
+      spotTl
+        .from(spotlight.querySelector('.spotlight__eyebrow'), withoutBlur({
           y: 18, autoAlpha: 0, filter: 'blur(6px)', duration: 0.75, ease: EASE_OUT, clearProps: 'filter'
         }))
-        .from(cp.querySelector('.curators-pick__heading'), {
+        .from(spotlight.querySelector('.spotlight__title'), {
           y: 30, autoAlpha: 0, duration: lite ? 0.65 : 0.9, ease: EASE_POWER4
         }, '-=0.5')
-        .from(cp.querySelector('.curators-pick__counter'), {
+        .from(spotlight.querySelector('.spotlight__count'), {
           y: 14, autoAlpha: 0, duration: 0.65, ease: EASE_EXPO
         }, '-=0.65')
-        .from(cp.querySelector('.curators-pick__watermark'), {
-          scale: lite ? 1 : 1.1, autoAlpha: 0, duration: lite ? 0.7 : 1.3, ease: 'power2.out'
-        }, '-=0.85');
+        .from(spotlight.querySelector('.spotlight__visual'), {
+          scale: lite ? 1 : 1.04, autoAlpha: 0, duration: lite ? 0.7 : 1.1, ease: 'power2.out'
+        }, '-=0.75')
+        .from(spotlight.querySelector('.spotlight__detail'), {
+          y: 24, autoAlpha: 0, duration: lite ? 0.55 : 0.8, ease: EASE_OUT
+        }, '-=0.65');
 
       if (!lite) {
-        cpTl
-          .from(cp.querySelector('.curators-pick__info-wrap'), {
-            clipPath: 'inset(0 0 0 100%)', duration: 1, ease: EASE_POWER4
-          }, '-=0.8')
-          .from(cp.querySelectorAll('.curators-pick__arrow'), {
-            autoAlpha: 0, scale: 0.7, rotation: -40, stagger: 0.09, duration: 0.6, ease: EASE_EXPO
-          }, '-=0.5');
-      } else {
-        cpTl.from(cp.querySelector('.curators-pick__info-wrap'), {
-          autoAlpha: 0, duration: 0.55, ease: EASE_OUT
-        }, '-=0.5');
+        spotTl.from(spotlight.querySelectorAll('.spotlight__arrow'), {
+          autoAlpha: 0, scale: 0.75, stagger: 0.08, duration: 0.55, ease: EASE_EXPO
+        }, '-=0.45')
+        .from(spotlight.querySelector('.spotlight__progress'), {
+          scaleX: 0, transformOrigin: 'left center', duration: 0.55, ease: EASE_OUT
+        }, '-=0.35');
       }
 
-      cpTl.from(cp.querySelectorAll('.curators-pick__dot'), {
-        scaleX: 0, transformOrigin: 'left center', stagger: 0.06, duration: 0.5, ease: EASE_OUT
-      }, '-=0.4');
-
       if (!lite) {
-        gsap.to(cp.querySelector('.curators-pick__watermark'), {
-          y: 55, ease: 'none',
-          scrollTrigger: { trigger: cp, start: 'top bottom', end: 'bottom top', scrub: 1.2 }
-        });
-        gsap.to(cp.querySelector('.curators-pick__stage'), {
-          y: -28, ease: 'none',
-          scrollTrigger: { trigger: cp, start: 'top bottom', end: 'bottom top', scrub: 1.4 }
+        gsap.to(spotlight.querySelector('.spotlight__index'), {
+          y: 40, ease: 'none',
+          scrollTrigger: { trigger: spotlight, start: 'top bottom', end: 'bottom top', scrub: 1.1 }
         });
       }
     }
