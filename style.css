@@ -827,6 +827,9 @@ body.is-nav-open {
   position: absolute;
   inset: 0;
   z-index: 0;
+  /* Poster always paints instantly — no layout shift, fast LCP, and a clean
+     fallback whenever the video is skipped (mobile) or blocked (Low Power Mode). */
+  background: #080808 url('images/hero-poster.webp') center / cover no-repeat;
 }
 
 .hero__video {
@@ -836,15 +839,15 @@ body.is-nav-open {
   display: block;
   object-fit: cover;
   object-position: center;
+  /* Never intercept taps or surface native iOS playback controls. */
+  pointer-events: none;
 }
 
-.hero--fallback .hero__media {
-  background: #080808 url('images/hero-poster.webp') center / cover no-repeat;
-}
-
+/* Poster-only (mobile / slow / reduced-motion) and hard-fallback: drop the
+   <video> entirely so iOS can't render its play-button overlay. */
+.hero--poster-only .hero__video,
 .hero--fallback .hero__video {
-  opacity: 0;
-  visibility: hidden;
+  display: none;
 }
 
 .hero__veil {

@@ -6,12 +6,12 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const FONT_LINKS = `  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap">
 `;
 
 const FOOTER_SCRIPTS = `  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
-  <script defer src="script.js?v=21"></script>`;
+  <script defer src="script.js?v=23"></script>`;
 
 for (const file of readdirSync(root).filter((f) => f.endsWith('.html'))) {
   let html = readFileSync(join(root, file), 'utf8');
@@ -29,7 +29,7 @@ for (const file of readdirSync(root).filter((f) => f.endsWith('.html'))) {
     );
   }
 
-  html = html.replace(/style\.css\?v=\d+/g, 'style.css?v=21');
+  html = html.replace(/style\.css\?v=\d+/g, 'style.css?v=23');
 
   writeFileSync(join(root, file), html);
   console.log('patched', file);

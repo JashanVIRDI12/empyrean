@@ -570,38 +570,53 @@
     var video = document.getElementById('heroVideo');
     if (!hero) return;
 
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     if (video) {
-      video.muted = true;
-      video.playsInline = true;
-      video.loop = true;
+      // Only stream the hero video where it autoplays reliably and the bytes
+      // are worth it: capable desktops on a decent connection. Mobile, touch,
+      // slow networks, save-data and reduced-motion all fall back to the
+      // instant poster background — no wasted download, no iOS play button.
+      var useVideo = !reduced && !isMobileLite() && !isSlowConnection();
 
-      if (isMobileLite() || isSlowConnection()) {
+      if (!useVideo) {
+        hero.classList.add('hero--poster-only');
+        video.removeAttribute('autoplay');
         video.preload = 'none';
-      }
+      } else {
+        video.muted = true;
+        video.playsInline = true;
+        video.loop = true;
+        video.preload = 'auto';
 
-      var fallbackTimer = setTimeout(function () {
-        if (video.readyState < 2) setHeroFallback(hero);
-      }, 4000);
+        var src = video.getAttribute('data-src');
+        if (src && !video.querySelector('source')) {
+          var source = document.createElement('source');
+          source.src = src;
+          source.type = 'video/mp4';
+          video.appendChild(source);
+          video.load();
+        }
 
-      video.addEventListener('canplay', function () {
-        clearTimeout(fallbackTimer);
-      }, { once: true });
+        var fallbackTimer = setTimeout(function () {
+          if (video.readyState < 2) setHeroFallback(hero);
+        }, 5000);
 
-      video.addEventListener('error', function () {
-        clearTimeout(fallbackTimer);
-        setHeroFallback(hero);
-      });
+        video.addEventListener('canplay', function () {
+          clearTimeout(fallbackTimer);
+        }, { once: true });
 
-      playHeroVideo();
+        video.addEventListener('error', function () {
+          clearTimeout(fallbackTimer);
+          setHeroFallback(hero);
+        });
 
-      document.addEventListener('visibilitychange', function () {
-        if (!document.hidden) playHeroVideo();
-      });
-
-      document.addEventListener('click', function retryOnce() {
         playHeroVideo();
-        document.removeEventListener('click', retryOnce);
-      }, { once: true, passive: true });
+
+        document.addEventListener('visibilitychange', function () {
+          if (!document.hidden) playHeroVideo();
+        });
+      }
     }
 
     if (typeof gsap === 'undefined') return;
