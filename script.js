@@ -9,7 +9,7 @@
   var ageYes = document.getElementById('ageYes');
   var ageNo = document.getElementById('ageNo');
 
-  if (sessionStorage.getItem('empyrean_age') === '1') {
+  if (sessionStorage.getItem('mng_age') === '1') {
     document.documentElement.classList.add('age-verified');
     if (ageGate) ageGate.classList.add('hidden');
   }
@@ -18,7 +18,7 @@
     ageYes.addEventListener('click', function () {
       document.documentElement.classList.add('age-verified');
       ageGate.classList.add('hidden');
-      sessionStorage.setItem('empyrean_age', '1');
+      sessionStorage.setItem('mng_age', '1');
       if (typeof playHeroVideo === 'function') playHeroVideo();
       if (typeof ScrollTrigger !== 'undefined') {
         setTimeout(function () { ScrollTrigger.refresh(); }, 100);
@@ -162,7 +162,7 @@
     shareBtn.addEventListener('click', function () {
       var url = window.location.href;
       if (navigator.share) {
-        navigator.share({ title: 'Empyrean Spirits', url: url }).catch(function () {});
+        navigator.share({ title: 'MNG Spirits | Premium Spirits Portfolio', url: url }).catch(function () {});
       } else if (navigator.clipboard) {
         navigator.clipboard.writeText(url).then(function () {
           var original = shareBtn.getAttribute('aria-label');
