@@ -4240,6 +4240,22 @@ a.connect-reach__val:hover {
   color: var(--amber-light);
 }
 
+.connect-reach__emails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.connect-reach__emails a {
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+  transition: color 0.35s var(--ease-expo);
+}
+
+.connect-reach__emails a:hover {
+  color: var(--amber-light);
+}
+
 .connect-reach__social {
   display: flex;
   gap: 1.75rem;
