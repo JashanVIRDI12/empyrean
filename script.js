@@ -1135,10 +1135,17 @@
       // Collection header reveal
       var collHeader = document.querySelector('.collection__header');
       if (collHeader) {
-        gsap.from(collHeader, {
+        gsap.from(collHeader.querySelector('.collection__intro'), {
           y: 28, autoAlpha: 0, duration: 0.85, ease: EASE_OUT,
           scrollTrigger: { trigger: collHeader, start: 'top 88%', once: true }
         });
+        var collMeta = collHeader.querySelector('.collection__meta');
+        if (collMeta) {
+          gsap.from(collMeta, {
+            x: 20, autoAlpha: 0, duration: 0.75, ease: EASE_EXPO,
+            scrollTrigger: { trigger: collHeader, start: 'top 88%', once: true }
+          });
+        }
       }
     }
 
@@ -1495,5 +1502,58 @@
       ScrollTrigger.refresh();
     });
   }
+
+  // ── WhatsApp enquiry widget ──
+  (function () {
+    var widget = document.getElementById('waWidget');
+    var panel = document.getElementById('waPanel');
+    var toggle = document.getElementById('waToggle');
+    var closeBtn = document.getElementById('waClose');
+
+    if (!widget || !panel || !toggle) return;
+
+    function setOpen(open) {
+      widget.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    }
+
+    function showWidget() {
+      widget.classList.add('is-ready');
+    }
+
+    if (document.documentElement.classList.contains('age-verified')) {
+      setTimeout(showWidget, 400);
+    } else if (ageYes) {
+      ageYes.addEventListener('click', function () {
+        setTimeout(showWidget, 500);
+      });
+    } else {
+      showWidget();
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(!widget.classList.contains('is-open'));
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function () {
+        setOpen(false);
+        toggle.focus();
+      });
+    }
+
+    document.addEventListener('click', function (e) {
+      if (!widget.classList.contains('is-open')) return;
+      if (!widget.contains(e.target)) setOpen(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && widget.classList.contains('is-open')) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+  }());
 
 })();

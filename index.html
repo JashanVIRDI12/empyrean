@@ -39,7 +39,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
-  <link rel="stylesheet" href="style.css?v=35">
+  <link rel="stylesheet" href="style.css?v=40">
 </head>
 <body>
 
@@ -271,28 +271,25 @@
 
     <!-- ══ COLLECTION ══ -->
     <section class="collection" id="collection">
+      <div class="collection__ambient" aria-hidden="true">
+        <div class="collection__vignette"></div>
+        <span class="collection__wm">05</span>
+      </div>
       <div class="collection__inner">
         <header class="collection__header">
           <div class="collection__intro" data-reveal>
             <p class="collection__label">The Collection</p>
             <h2 class="collection__title">Premium Spirits Portfolio</h2>
           </div>
-          <div class="collection__controls" data-reveal="delay-1">
-            <span class="collection__hint">Scroll to explore</span>
-            <div class="collection__arrows">
-              <button class="collection__arrow" id="collectionPrev" type="button" aria-label="Scroll collection left">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-              </button>
-              <button class="collection__arrow" id="collectionNext" type="button" aria-label="Scroll collection right">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-              </button>
-            </div>
+          <div class="collection__meta" data-reveal="delay-1">
+            <span class="collection__meta-line" aria-hidden="true"></span>
+            <span class="collection__meta-count"><em>05</em> Expressions</span>
           </div>
         </header>
 
         <div class="collection__viewport">
           <div class="collection__track" id="collectionTrack">
-            <article class="collection__card" data-reveal>
+            <a href="velvet-crown.html" class="collection__card" data-reveal>
               <span class="collection__num" aria-hidden="true">01</span>
               <div class="collection__visual">
                 <div class="collection__glow collection__glow--amber" aria-hidden="true"></div>
@@ -302,10 +299,12 @@
                 <p class="collection__type">Single Malt Whiskey</p>
                 <h3 class="collection__name">Velvet Crown</h3>
                 <p class="collection__desc">Aged 18 years in charred sherry casks. Smoked honey, dried fig, toasted vanilla.</p>
-                <a href="velvet-crown.html" class="collection__link">Discover <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               </div>
-            </article>
-            <article class="collection__card" data-reveal="delay-1">
+              <span class="collection__arrow-ring" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </a>
+            <a href="liquid-velvet.html" class="collection__card" data-reveal="delay-1">
               <span class="collection__num" aria-hidden="true">02</span>
               <div class="collection__visual">
                 <div class="collection__glow collection__glow--cool" aria-hidden="true"></div>
@@ -315,10 +314,12 @@
                 <p class="collection__type">Premium Rum</p>
                 <h3 class="collection__name">Liquid Velvet</h3>
                 <p class="collection__desc">Barrel-polished Caribbean rum. Warm spice, molasses, vanilla, silk finish.</p>
-                <a href="liquid-velvet.html" class="collection__link">Discover <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               </div>
-            </article>
-            <article class="collection__card" data-reveal="delay-2">
+              <span class="collection__arrow-ring" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </a>
+            <a href="gilded-grain.html" class="collection__card" data-reveal="delay-2">
               <span class="collection__num" aria-hidden="true">03</span>
               <div class="collection__visual">
                 <div class="collection__glow collection__glow--warm" aria-hidden="true"></div>
@@ -328,10 +329,12 @@
                 <p class="collection__type">Aged Grain Whiskey</p>
                 <h3 class="collection__name">The Gilded Grain</h3>
                 <p class="collection__desc">Honeyed malt, golden spice, and toasted oak — aged grain whiskey.</p>
-                <a href="gilded-grain.html" class="collection__link">Discover <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               </div>
-            </article>
-            <article class="collection__card" data-reveal="delay-3">
+              <span class="collection__arrow-ring" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </a>
+            <a href="copper-ridge.html" class="collection__card" data-reveal="delay-3">
               <span class="collection__num" aria-hidden="true">04</span>
               <div class="collection__visual">
                 <div class="collection__glow collection__glow--wine" aria-hidden="true"></div>
@@ -341,10 +344,12 @@
                 <p class="collection__type">Blended Whiskey</p>
                 <h3 class="collection__name">Copper Ridge</h3>
                 <p class="collection__desc">Black cherry, cedar, and dark chocolate — premium blended whiskey.</p>
-                <a href="copper-ridge.html" class="collection__link">Discover <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               </div>
-            </article>
-            <article class="collection__card" data-reveal="delay-4">
+              <span class="collection__arrow-ring" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </a>
+            <a href="bhaarat-field.html" class="collection__card" data-reveal="delay-4">
               <span class="collection__num" aria-hidden="true">05</span>
               <div class="collection__visual">
                 <div class="collection__glow collection__glow--saffron" aria-hidden="true"></div>
@@ -354,12 +359,11 @@
                 <p class="collection__type">Premium Indian Whisky</p>
                 <h3 class="collection__name">Bhaarat Field</h3>
                 <p class="collection__desc">Sun-ripened barley, warm spice, golden malt — premium Indian whisky.</p>
-                <a href="bhaarat-field.html" class="collection__link">Discover <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               </div>
-            </article>
-          </div>
-          <div class="collection__progress" aria-hidden="true">
-            <div class="collection__progress-bar" id="collectionProgress"></div>
+              <span class="collection__arrow-ring" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </a>
           </div>
         </div>
       </div>
@@ -479,8 +483,41 @@
     </div>
   </footer>
 
+  <aside class="wa-widget" id="waWidget" aria-label="WhatsApp enquiry">
+    <div class="wa-widget__panel" id="waPanel" aria-hidden="true">
+      <div class="wa-widget__panel-head">
+        <p class="wa-widget__eyebrow">Private Enquiries</p>
+        <button class="wa-widget__close" id="waClose" type="button" aria-label="Close enquiry panel">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <p class="wa-widget__title">Speak with <em>MNG Spirits</em></p>
+      <p class="wa-widget__text">Portfolio tastings, distillery visits, and trade enquiries — our team responds personally.</p>
+      <a class="wa-widget__cta" href="https://wa.me/919910028680?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20MNG%20Spirits." target="_blank" rel="noopener noreferrer">
+        <svg class="wa-widget__cta-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor"/></svg>
+        <span>Continue on WhatsApp</span>
+        <svg class="wa-widget__cta-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a class="wa-widget__cta wa-widget__cta--mail" href="mailto:info@mngspirits.com?subject=MNG%20Spirits%20Enquiry">
+        <svg class="wa-widget__cta-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>Email Enquiry</span>
+        <svg class="wa-widget__cta-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <div class="wa-widget__reach">
+        <a href="tel:+919910028680">+91 99100 28680</a>
+        <span class="wa-widget__reach-sep" aria-hidden="true"></span>
+        <a href="mailto:info@mngspirits.com">info@mngspirits.com</a>
+      </div>
+    </div>
+    <button class="wa-widget__toggle" id="waToggle" type="button" aria-expanded="false" aria-controls="waPanel" aria-label="Open WhatsApp enquiry">
+      <span class="wa-widget__pulse" aria-hidden="true"></span>
+      <svg class="wa-widget__toggle-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor"/></svg>
+      <span class="wa-widget__toggle-label">Enquire</span>
+    </button>
+  </aside>
+
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
-  <script defer src="script.js?v=35"></script>
+  <script defer src="script.js?v=37"></script>
 </body>
 </html>
