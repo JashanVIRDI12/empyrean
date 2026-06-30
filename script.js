@@ -1352,6 +1352,8 @@
     var note = document.getElementById('connectFormNote');
     if (!form) return;
 
+    initGlassSelect();
+
     if (typeof emailjs !== 'undefined') {
       emailjs.init('ZnZGcLpxgGxsGdvsb');
     }
@@ -1371,11 +1373,15 @@
       var emailEl = document.getElementById('connectEmail');
       var subjectEl = document.getElementById('connectSubject');
       var messageEl = document.getElementById('connectMessage');
+      var subjectWrap = document.getElementById('connectSubjectWrap');
 
       if (!nameEl.value.trim() || !emailEl.value.trim() || !subjectEl.value || !messageEl.value.trim()) {
         if (note) note.textContent = 'Please fill in all fields before sending.';
+        if (subjectWrap && !subjectEl.value) subjectWrap.classList.add('is-invalid');
         return;
       }
+
+      if (subjectWrap) subjectWrap.classList.remove('is-invalid');
 
       if (typeof emailjs === 'undefined') {
         if (note) note.textContent = 'Unable to send — please email us at info@mngspirits.com or info@mngoverseas.com.';
@@ -1389,7 +1395,8 @@
       if (note) note.textContent = '';
 
       emailjs.send('service_6hlbtnk', 'template_kj49ldf', {
-        from_name: nameEl.value.trim(),
+        from_name: 'MNG Spirits',
+        visitor_name: nameEl.value.trim(),
         from_email: emailEl.value.trim(),
         reply_to: emailEl.value.trim(),
         to_email: 'info@mngspirits.com',
@@ -1408,6 +1415,138 @@
         }
       });
     });
+  }
+
+  function initGlassSelect() {
+    var wrap = document.getElementById('connectSubjectWrap');
+    var native = document.getElementById('connectSubject');
+    var trigger = document.getElementById('connectSubjectBtn');
+    var valueEl = document.getElementById('connectSubjectValue');
+    var panel = document.getElementById('connectSubjectPanel');
+    var form = document.getElementById('connectForm');
+
+    if (!wrap || !native || !trigger || !valueEl || !panel) return;
+
+    var options = Array.prototype.slice.call(panel.querySelectorAll('.glass-select__option'));
+    var placeholder = 'Select a topic';
+    var focusIndex = -1;
+    var open = false;
+
+    function labelFor(value) {
+      var match = native.querySelector('option[value="' + value + '"]');
+      return match ? match.textContent.trim() : placeholder;
+    }
+
+    function setOpen(next) {
+      open = next;
+      wrap.classList.toggle('is-open', open);
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      panel.hidden = !open;
+      if (!open) {
+        focusIndex = -1;
+        options.forEach(function (opt) { opt.classList.remove('is-focused'); });
+      }
+    }
+
+    function setValue(value) {
+      native.value = value;
+      valueEl.textContent = labelFor(value);
+      wrap.classList.toggle('has-value', !!value);
+      wrap.classList.remove('is-invalid');
+      options.forEach(function (opt) {
+        var selected = opt.getAttribute('data-value') === value;
+        opt.classList.toggle('is-selected', selected);
+        opt.setAttribute('aria-selected', selected ? 'true' : 'false');
+      });
+      native.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+    function resetSelect() {
+      native.selectedIndex = 0;
+      valueEl.textContent = placeholder;
+      wrap.classList.remove('has-value', 'is-invalid', 'is-open');
+      options.forEach(function (opt) {
+        opt.classList.remove('is-selected', 'is-focused');
+        opt.setAttribute('aria-selected', 'false');
+      });
+      setOpen(false);
+    }
+
+    function selectFocused() {
+      if (focusIndex < 0 || focusIndex >= options.length) return;
+      var opt = options[focusIndex];
+      setValue(opt.getAttribute('data-value'));
+      setOpen(false);
+      trigger.focus();
+    }
+
+    function moveFocus(dir) {
+      if (!open) {
+        setOpen(true);
+        focusIndex = 0;
+      } else {
+        focusIndex = (focusIndex + dir + options.length) % options.length;
+      }
+      options.forEach(function (opt, i) {
+        opt.classList.toggle('is-focused', i === focusIndex);
+      });
+    }
+
+    trigger.addEventListener('click', function () {
+      setOpen(!open);
+      if (open) {
+        var selectedIndex = options.findIndex(function (opt) {
+          return opt.classList.contains('is-selected');
+        });
+        focusIndex = selectedIndex >= 0 ? selectedIndex : 0;
+        options.forEach(function (opt, i) {
+          opt.classList.toggle('is-focused', i === focusIndex);
+        });
+      }
+    });
+
+    options.forEach(function (opt, index) {
+      opt.addEventListener('click', function () {
+        setValue(opt.getAttribute('data-value'));
+        setOpen(false);
+        trigger.focus();
+      });
+
+      opt.addEventListener('mouseenter', function () {
+        focusIndex = index;
+        options.forEach(function (item, i) {
+          item.classList.toggle('is-focused', i === focusIndex);
+        });
+      });
+    });
+
+    trigger.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        moveFocus(1);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        moveFocus(-1);
+      } else if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (open) selectFocused();
+        else setOpen(true);
+      } else if (e.key === 'Escape') {
+        setOpen(false);
+      } else if (e.key === 'Tab') {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!wrap.contains(e.target)) setOpen(false);
+    });
+
+    if (form) {
+      form.addEventListener('reset', resetSelect);
+    }
+
+    resetSelect();
   }
 
   function initProductPageAnimations() {
