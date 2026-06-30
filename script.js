@@ -337,6 +337,8 @@
     var progress = document.getElementById('collectionProgress');
 
     if (!track) return;
+    if (track.scrollWidth <= track.clientWidth + 1) return;
+    if (track.scrollWidth <= track.clientWidth + 1) return;
 
     var isCoarsePointer = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     var isDown = false;
@@ -1119,34 +1121,17 @@
       });
     }
 
-    // ── Collection cards — staggered GSAP reveal ──
+    // ── Collection — subtle slide (always visible by default) ──
     var collCards = document.querySelectorAll('#collection .collection__card');
     if (collCards.length) {
-      gsap.from(collCards, withoutBlur({
-        y: lite ? 32 : 50,
-        autoAlpha: 0,
-        filter: 'blur(8px)',
-        stagger: lite ? 0.05 : 0.08,
-        duration: lite ? 0.6 : 0.9,
-        ease: EASE_POWER4,
-        clearProps: 'filter',
-        scrollTrigger: { trigger: '#collection', start: 'top 78%', once: true }
-      }));
-      // Collection header reveal
-      var collHeader = document.querySelector('.collection__header');
-      if (collHeader) {
-        gsap.from(collHeader.querySelector('.collection__intro'), {
-          y: 28, autoAlpha: 0, duration: 0.85, ease: EASE_OUT,
-          scrollTrigger: { trigger: collHeader, start: 'top 88%', once: true }
-        });
-        var collMeta = collHeader.querySelector('.collection__meta');
-        if (collMeta) {
-          gsap.from(collMeta, {
-            x: 20, autoAlpha: 0, duration: 0.75, ease: EASE_EXPO,
-            scrollTrigger: { trigger: collHeader, start: 'top 88%', once: true }
-          });
-        }
-      }
+      gsap.from(collCards, {
+        y: lite ? 16 : 24,
+        duration: lite ? 0.55 : 0.75,
+        stagger: 0.05,
+        ease: EASE_OUT,
+        clearProps: 'transform',
+        scrollTrigger: { trigger: '#collection', start: 'top 88%', once: true }
+      });
     }
 
     // ── Featured Selection — entrance ──

@@ -39,7 +39,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
-  <link rel="stylesheet" href="style.css?v=42">
+  <link rel="stylesheet" href="style.css?v=45">
 </head>
 <body>
 
@@ -271,25 +271,18 @@
 
     <!-- ══ COLLECTION ══ -->
     <section class="collection" id="collection">
-      <div class="collection__ambient" aria-hidden="true">
-        <div class="collection__vignette"></div>
-        <span class="collection__wm">05</span>
-      </div>
       <div class="collection__inner">
         <header class="collection__header">
-          <div class="collection__intro" data-reveal>
+          <div class="collection__intro">
             <p class="collection__label">The Collection</p>
             <h2 class="collection__title">Premium Spirits Portfolio</h2>
           </div>
-          <div class="collection__meta" data-reveal="delay-1">
-            <span class="collection__meta-line" aria-hidden="true"></span>
-            <span class="collection__meta-count"><em>05</em> Expressions</span>
-          </div>
+          <p class="collection__meta"><em>05</em> Expressions</p>
         </header>
 
         <div class="collection__viewport">
           <div class="collection__track" id="collectionTrack">
-            <a href="velvet-crown.html" class="collection__card" data-reveal>
+            <a href="velvet-crown.html" class="collection__card collection__card--lead">
               <span class="collection__num" aria-hidden="true">01</span>
               <div class="collection__visual">
                 <div class="collection__glow collection__glow--amber" aria-hidden="true"></div>
@@ -298,13 +291,9 @@
               <div class="collection__body">
                 <p class="collection__type">Single Malt Whiskey</p>
                 <h3 class="collection__name">Velvet Crown</h3>
-                <p class="collection__desc">Aged 18 years in charred sherry casks. Smoked honey, dried fig, toasted vanilla.</p>
               </div>
-              <span class="collection__arrow-ring" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </span>
             </a>
-            <a href="liquid-velvet.html" class="collection__card" data-reveal="delay-1">
+            <a href="liquid-velvet.html" class="collection__card collection__card--lead">
               <span class="collection__num" aria-hidden="true">02</span>
               <div class="collection__visual">
                 <div class="collection__glow collection__glow--cool" aria-hidden="true"></div>
@@ -313,13 +302,9 @@
               <div class="collection__body">
                 <p class="collection__type">Premium Rum</p>
                 <h3 class="collection__name">Liquid Velvet</h3>
-                <p class="collection__desc">Barrel-polished Caribbean rum. Warm spice, molasses, vanilla, silk finish.</p>
               </div>
-              <span class="collection__arrow-ring" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </span>
             </a>
-            <a href="gilded-grain.html" class="collection__card" data-reveal="delay-2">
+            <a href="gilded-grain.html" class="collection__card">
               <span class="collection__num" aria-hidden="true">03</span>
               <div class="collection__visual">
                 <div class="collection__glow collection__glow--warm" aria-hidden="true"></div>
@@ -328,13 +313,9 @@
               <div class="collection__body">
                 <p class="collection__type">Aged Grain Whiskey</p>
                 <h3 class="collection__name">The Gilded Grain</h3>
-                <p class="collection__desc">Honeyed malt, golden spice, and toasted oak — aged grain whiskey.</p>
               </div>
-              <span class="collection__arrow-ring" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </span>
             </a>
-            <a href="copper-ridge.html" class="collection__card" data-reveal="delay-3">
+            <a href="copper-ridge.html" class="collection__card">
               <span class="collection__num" aria-hidden="true">04</span>
               <div class="collection__visual">
                 <div class="collection__glow collection__glow--wine" aria-hidden="true"></div>
@@ -343,13 +324,9 @@
               <div class="collection__body">
                 <p class="collection__type">Blended Whiskey</p>
                 <h3 class="collection__name">Copper Ridge</h3>
-                <p class="collection__desc">Black cherry, cedar, and dark chocolate — premium blended whiskey.</p>
               </div>
-              <span class="collection__arrow-ring" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </span>
             </a>
-            <a href="bhaarat-field.html" class="collection__card" data-reveal="delay-4">
+            <a href="bhaarat-field.html" class="collection__card">
               <span class="collection__num" aria-hidden="true">05</span>
               <div class="collection__visual">
                 <div class="collection__glow collection__glow--saffron" aria-hidden="true"></div>
@@ -358,14 +335,14 @@
               <div class="collection__body">
                 <p class="collection__type">Premium Indian Whisky</p>
                 <h3 class="collection__name">Bhaarat Field</h3>
-                <p class="collection__desc">Sun-ripened barley, warm spice, golden malt — premium Indian whisky.</p>
               </div>
-              <span class="collection__arrow-ring" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </span>
             </a>
           </div>
         </div>
+
+        <footer class="collection__footer">
+          <a href="collection.html" class="collection__view-all">View Full Collection <span aria-hidden="true">→</span></a>
+        </footer>
       </div>
     </section>
 
@@ -509,6 +486,6 @@
 
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
-  <script defer src="script.js?v=38"></script>
+  <script defer src="script.js?v=41"></script>
 </body>
 </html>
