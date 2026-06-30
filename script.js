@@ -1393,7 +1393,7 @@
       }
 
       if (typeof emailjs === 'undefined') {
-        if (note) note.textContent = 'Unable to send — please email us at info@mngoverseas.com.';
+        if (note) note.textContent = 'Unable to send — please email us at info@mngspirits.com or info@mngoverseas.com.';
         return;
       }
 
@@ -1407,13 +1407,15 @@
         from_name: nameEl.value.trim(),
         from_email: emailEl.value.trim(),
         reply_to: emailEl.value.trim(),
+        to_email: 'info@mngspirits.com',
+        bcc_email: 'info@mngoverseas.com',
         subject: subjectLabels[subjectEl.value] || subjectEl.value,
         message: messageEl.value.trim()
       }).then(function () {
         if (note) note.textContent = 'Thank you — your enquiry has been received. We will respond shortly.';
         form.reset();
       }).catch(function () {
-        if (note) note.textContent = 'Something went wrong. Please try again or email info@mngoverseas.com directly.';
+        if (note) note.textContent = 'Something went wrong. Please try again or email info@mngspirits.com or info@mngoverseas.com directly.';
       }).finally(function () {
         if (submitBtn) {
           submitBtn.disabled = false;
